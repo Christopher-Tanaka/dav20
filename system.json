@@ -1,0 +1,30 @@
+{
+  "name": "dav20",
+  "title": "Dark Ages Vampire 20th Anniversary Edition",
+  "description": "Dark Ages Vampire 20th Anniversary Edition for FoundryVTT",
+  "version": "0.0.1",
+  "minimumCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.6",
+  "templateVersion": 2,
+  "author": "Christopher Tanaka",
+  "esmodules": ["module/main.js"],
+  "styles": ["css/dav20.css"],
+  "scripts": [],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Brazilian Portuguese",
+      "path": "lang/pt-BR.json"
+    }
+  ],
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "",
+  "secondaryTokenAttribute": ""
+}
