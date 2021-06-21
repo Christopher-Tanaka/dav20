@@ -1,8 +1,121 @@
 {
-    "Actor":{},
+    "Actor":{
+        "types": [
+            "vampire",
+            "werewolf"
+        ],
+        "templates": {
+            "base": {
+                "road": {
+                    "value": 0,
+                    "max": 10,
+                    "aura": ""
+                },
+                "willpower": {
+                    "value": 0,
+                    "tempValue": 0,
+                    "max": 10
+                },
+                "bloodPool": {
+                    "value": 0,
+                    "max": 999,
+                    "maxPerTurn": 1
+                }
+            }
+        },
+        "vampire": {
+            "templates": ["base"],
+            "biography": "",
+            "equipment": "",
+            "notes": "",
+            "abilities": {
+                "strength": {
+                    "value": 0,
+                    "name": "dav20.Strength"
+                  },
+                  "charisma": {
+                    "value": 0,
+                    "name": "dav20.Charisma"
+                  },
+                  "perception": {
+                    "value": 0,
+                    "name": "dav20.Perception"
+                  },
+                  "dexterity": {
+                    "value": 0,
+                    "name": "dav20.Dexterity"
+                  },
+                  "manipulation": {
+                    "value": 0,
+                    "name": "dav20.Manipulation"
+                  },
+                  "intelligence": {
+                    "value": 0,
+                    "name": "dav20.Intelligence"
+                  },
+                  "stamina": {
+                    "value": 0,
+                    "name": "dav20.Stamina"
+                  },
+                  "appearence": {
+                    "value": 0,
+                    "name": "dav20.Appearence"
+                  },
+                  "wits": {
+                    "value": 0,
+                    "name": "dav20.Wits"
+                  }
+            }            
+        }
+    },
+    "werewolf": {
+        "templates": ["base"],
+        "biography": "",
+        "equipment": "",
+        "notes": "",
+        "abilities": {
+            "strength": {
+                "value": 0,
+                "name": "dav20.Strength"
+              },
+              "charisma": {
+                "value": 0,
+                "name": "dav20.Charisma"
+              },
+              "perception": {
+                "value": 0,
+                "name": "dav20.Perception"
+              },
+              "dexterity": {
+                "value": 0,
+                "name": "dav20.Dexterity"
+              },
+              "manipulation": {
+                "value": 0,
+                "name": "dav20.Manipulation"
+              },
+              "intelligence": {
+                "value": 0,
+                "name": "dav20.Intelligence"
+              },
+              "stamina": {
+                "value": 0,
+                "name": "dav20.Stamina"
+              },
+              "appearence": {
+                "value": 0,
+                "name": "dav20.Appearence"
+              },
+              "wits": {
+                "value": 0,
+                "name": "dav20.Wits"
+              }
+        }            
+    },
     "Item":{
         "types": [
-            "weapon"
+            "weapon",
+            "vehicle"
         ],
         "templates" : {
             "itemDescription": {

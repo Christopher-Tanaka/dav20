@@ -1,19 +1,15 @@
-/*
+import { Dav20ItemSheet } from './items/dav20ItemSheet.js';
 
-import { preloadHandlebarsTemplates } from './templates.js'
-import { VampireActor } from './actors/vampireActor.js'
-import { Vampire } from './actors/sheets/vampire.js'
-
-Hooks.once("init", async function() {
+Hooks.once("init", function() {
     console.log("dav20 | initialising Dark Ages Vampite 20th Anniversay System");
-
-    game.vtm5e = {
-        VampireActor,
+    
+    game.dav20 = {
+        Dav20ItemSheet,
         rollItemMacro
       }
 
-    Actors.unregisterSheet('core', ActorSheet)
-    Actors.registerSheet('dav20', VampireActor, { makeDefault: true })
+    Items.unregisterSheet('core', ItemSheet)
+    Items.registerSheet('dav20', Dav20ItemSheet, { makeDefault: true })
 })
 
 function rollItemMacro (itemName) {
@@ -27,4 +23,3 @@ function rollItemMacro (itemName) {
     // Trigger the item roll
     return item.roll()
   }
-  */
