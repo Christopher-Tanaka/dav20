@@ -1,0 +1,23 @@
+{
+    "Actor":{},
+    "Item":{
+        "types": [
+            "weapon"
+        ],
+        "templates" : {
+            "itemDescription": {
+                "description": ""
+            }
+        },
+        "weapon": {
+            "templates" : ["itemDescription"],
+            "attackWith": "sword",
+            "damage": 0,
+            "concealment": 0
+        },
+        "vehicle": {
+            "templates" : ["itemDescription"],
+            "accel": "accel"
+        }
+    }
+}
