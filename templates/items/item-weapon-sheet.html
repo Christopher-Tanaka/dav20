@@ -1,7 +1,52 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
-    <p> Weapon!</p>
+    <section class="weapon-sheet-body">
+
+        {{!-- Attributes Tab --}}
+        <div class="weapon-details">
+
+            <div class="form-group">
+                <label>{{ localize "Weapon.MinStr" }}</label>
+                <input type="text" name="data.Weapon.MinStr" value="{{data.Weapon.MinStr}}"  placeholder="{{ localize 'Weapon.MinStr' }}"/>
+            </div>
+
+            <div class="form-group">
+                <label>{{ localize "Weapon.DamageType" }}</label>
+                <select name="data.Weapon.DamageType">
+                    {{#select data.Weapon.DamageType}}
+                    <option value=""></option>
+                    {{#each config.damageTypes as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>{{ localize "Weapon.Concealment" }}</label>
+                <select name="data.Weapon.Concealment">
+                    {{#select data.Weapon.Concealment}}
+                    <option value=""></option>
+                    {{#each config.concealmentTypes as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>{{ localize "Weapon.Damage" }}</label>
+                <input type="text" name="data.Weapon.Damage" value="{{data.Weapon.Damage}}"  placeholder="{{ localize 'Weapon.Damage' }}"/>
+            </div>
+
+            <div class="form-group">
+                <label>{{ localize "Weapon.Range" }}</label>
+                <input type="text" name="data.Weapon.Range" value="{{data.Weapon.Range}}"  placeholder="{{ localize 'Weapon.Range' }}"/>
+            </div>
+
+        </div>
+    </section>
 </form>

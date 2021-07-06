@@ -1,8 +1,7 @@
 {
     "Actor":{
         "types": [
-            "vampire",
-            "werewolf"
+            "vampire"
         ],
         "templates": {
             "base": {
@@ -25,92 +24,184 @@
         },
         "vampire": {
             "templates": ["base"],
+            "experienceSpent": "",
+            "experience": "",
+            "nature": "",
+            "clan": "",
+            "player": "",
+            "demeanor": "",
+            "generation": "",
+            "chronicle": "",
+            "concept": "",
+            "sire": "",
             "biography": "",
             "equipment": "",
             "notes": "",
-            "abilities": {
+            "attributes": {
                 "strength": {
                     "value": 0,
-                    "name": "dav20.Strength"
+                    "name": "DAV20.Strength"
                   },
                   "charisma": {
                     "value": 0,
-                    "name": "dav20.Charisma"
+                    "name": "DAV20.Charisma"
                   },
                   "perception": {
                     "value": 0,
-                    "name": "dav20.Perception"
+                    "name": "DAV20.Perception"
                   },
                   "dexterity": {
                     "value": 0,
-                    "name": "dav20.Dexterity"
+                    "name": "DAV20.Dexterity"
                   },
                   "manipulation": {
                     "value": 0,
-                    "name": "dav20.Manipulation"
+                    "name": "DAV20.Manipulation"
                   },
                   "intelligence": {
                     "value": 0,
-                    "name": "dav20.Intelligence"
+                    "name": "DAV20.Intelligence"
                   },
                   "stamina": {
                     "value": 0,
-                    "name": "dav20.Stamina"
+                    "name": "DAV20.Stamina"
                   },
                   "appearence": {
                     "value": 0,
-                    "name": "dav20.Appearence"
+                    "name": "DAV20.Appearence"
                   },
                   "wits": {
                     "value": 0,
-                    "name": "dav20.Wits"
+                    "name": "DAV20.Wits"
                   }
-            }            
-        }
-    },
-    "werewolf": {
-        "templates": ["base"],
-        "biography": "",
-        "equipment": "",
-        "notes": "",
-        "abilities": {
-            "strength": {
-                "value": 0,
-                "name": "dav20.Strength"
+            },
+            "talents": {
+              "alertness": {
+                "value": -1,
+                "name": "DAV20.Alertness"
               },
-              "charisma": {
-                "value": 0,
-                "name": "dav20.Charisma"
+              "athletics": {
+                "value": -1,
+                "name": "DAV20.Athletics"
               },
-              "perception": {
-                "value": 0,
-                "name": "dav20.Perception"
+              "awareness": {
+                "value": -1,
+                "name": "DAV20.Awareness"
               },
-              "dexterity": {
-                "value": 0,
-                "name": "dav20.Dexterity"
+              "brawl": {
+                "value": -1,
+                "name": "DAV20.Brawl"
               },
-              "manipulation": {
-                "value": 0,
-                "name": "dav20.Manipulation"
+              "empathy": {
+                "value":-1,
+                "name": "DAV20.Empathy"
               },
-              "intelligence": {
-                "value": 0,
-                "name": "dav20.Intelligence"
+              "expression": {
+                "value": -1,
+                "name": "DAV20.Expression"
               },
-              "stamina": {
-                "value": 0,
-                "name": "dav20.Stamina"
+              "intimidation": {
+                "value": -1,
+                "name": "DAV20.Intimidation"
               },
-              "appearence": {
-                "value": 0,
-                "name": "dav20.Appearence"
+              "leadership": {
+                "value": -1,
+                "name": "DAV20.Leadership"
               },
-              "wits": {
-                "value": 0,
-                "name": "dav20.Wits"
+              "legerdemain": {
+                "value": -1,
+                "name": "DAV20.Legerdemain"
+              },
+              "subterfuge": {
+                "value": -1,
+                "name": "DAV20.Subterfuge"
               }
-        }            
+            },
+            "skills": {
+              "animalKen": {
+                "value": -1,
+                "name": "DAV20.AnimalKen"
+              },
+              "archery": {
+                "value": -1,
+                "name": "DAV20.Archery"
+              },
+              "commerce": {
+                "value": -1,
+                "name": "DAV20.Commerce"
+              },
+              "crafts": {
+                "value": -1,
+                "name": "DAV20.Crafts"
+              },
+              "etiquette": {
+                "value": -1,
+                "name": "DAV20.Etiquette"
+              },
+              "melee": {
+                "value": -1,
+                "name": "DAV20.Melee"
+              },
+              "performance": {
+                "value": -1,
+                "name": "DAV20.Performance"
+              },
+              "ride": {
+                "value": -1,
+                "name": "DAV20.Ride"
+              },
+              "stealth": {
+                "value": 0,
+                "name": "DAV20.Stealth"
+              },
+              "survival": {
+                "value": -1,
+                "name": "DAV20.Survival"
+              }
+            },
+            "knowledges": {
+              "academics": {
+                "value": -1,
+                "name": "DAV20.Academics"
+              },
+              "enigmas": {
+                "value": -1,
+                "name": "DAV20.Enigmas"
+              },
+              "hearthWisdom": {
+                "value": -1,
+                "name": "DAV20.HearthWisdom"
+              },
+              "investigation": {
+                "value": -1,
+                "name": "DAV20.Investigation"
+              },
+              "law": {
+                "value": -1,
+                "name": "DAV20.Law"
+              },
+              "medicine": {
+                "value": -1,
+                "name": "DAV20.Medicine"
+              },
+              "occult": {
+                "value": -1,
+                "name": "DAV20.Occult"
+              },
+              "politics": {
+                "value": -1,
+                "name": "DAV20.Politics"
+              },
+              "seneschal": {
+                "value": -1,
+                "name": "DAV20.Seneschal"
+              },
+              "theology": {
+                "value": -1,
+                "name": "DAV20.Theology"
+              }
+          }          
+        }
     },
     "Item":{
         "types": [
@@ -124,9 +215,12 @@
         },
         "weapon": {
             "templates" : ["itemDescription"],
-            "attackWith": "sword",
             "damage": 0,
-            "concealment": 0
+            "damageType": "L",
+            "range": 0,
+            "concealment": 0,
+            "minimumStrength": 0,
+            "notes": ""
         },
         "vehicle": {
             "templates" : ["itemDescription"],

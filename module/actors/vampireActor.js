@@ -1,5 +1,1 @@
-export default class VampireActor extends Actor {
-    prepareData () {
-        super.prepareData()
-      }
-}
+export class VampireActor extends Actor {}

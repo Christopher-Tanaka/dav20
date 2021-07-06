@@ -1,9 +1,175 @@
-<form class="actor-sheet {{cssClass}}" autocomplete="off">
-    <p>HELLO!</p>p>
+<form class="{{cssClass}}" autocomplete="off">
+    {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
-        <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+        
+        <section class="actor-profile">
+
+            <div class="summary-info actor-name">
+                <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'DAV20.Name' }}"/>
+            </div>
+
+            <div class="summary-info actor-nature">
+                <input name="nature" type="text" value="{{actor.nature}}" placeholder="{{ localize 'DAV20.Nature' }}"/>
+            </div>
+
+            <div class="summary-info actor-clan">
+                <input name="clan" type="text" value="{{actor.clan}}" placeholder="{{ localize 'DAV20.Clan' }}"/>
+            </div>
+
+            <div class="summary-info actor-demeanor">
+                <input name="demeanor" type="text" value="{{actor.demeanor}}" placeholder="{{ localize 'DAV20.Demeanor' }}"/>
+            </div>
+
+            <div class="summary-info actor-generation">
+                <input name="generation" type="text" value="{{actor.generation}}" placeholder="{{ localize 'DAV20.Generation' }}"/>
+            </div>
+
+            <div class="summary-info actor-chronicle">
+                <input name="chronicle" type="text" value="{{actor.chronicle}}" placeholder="{{ localize 'DAV20.Chronicle' }}"/>
+            </div>
+
+            <div class="summary-info actor-concept">
+                <input name="concept" type="text" value="{{actor.concept}}" placeholder="{{ localize 'DAV20.Concept' }}"/>
+            </div>
+
+            <div class="summary-info actor-sire">
+                <input name="sire" type="text" value="{{actor.sire}}" placeholder="{{ localize 'DAV20.Sire' }}"/>
+            </div>
+
+        </section>
+        
     </header>
+
+    {{!-- Character Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="abilities">{{ localize "DAV20.Abilities" }}</a>
+        <a class="item" data-tab="disciplines">{{ localize "DAV20.Disciplines" }}</a>
+        <a class="item" data-tab="rituals">{{ localize "DAV20.Rituals" }}</a>
+    </nav>
+    
+    
+    <div class="label-abilitie">
+        <label class="DAV20.Abilities">{{ localize "DAV20.Abilities" }}</label>
+    </div>
+    
+
+    <section class="actor-abilities-header">
+        <div class="abilitie-header">
+            <label class="abilities-label"> {{ localize "DAV20.Talents" }} </label>
+        </div>
+
+        <div class="abilitie-header abilities-label">
+            <label class="abilities-label">{{ localize "DAV20.Skills" }}</label>
+        </div>
+
+        <div class="abilitie-header abilities-label">
+            <label class="abilities-label"> {{ localize "DAV20.Knowledges" }}</label>
+        </div>
+    </section>
+    
+    <section class="actor-abilities">
+        
+        <div class="actor-talents">
+            {{#each data.talents as |talent key|}}
+            <div class="actor-abilitie-row">
+
+                <div class="abilitie-name-label">
+                    <label for="data.talents.{{key}}.value" class="resource-label vrollable"
+                        data-roll="{{talent.value}}" data-label="{{localize talent.name}}">{{localize talent.name}}
+                    </label>
+                </div>
+                
+                <div class="abilitie-value-label">
+                    <label for="data.talents.{{key}}.value" class="resource-row-label"
+                        data-roll="{{talent.value}}" data-label="{{localize talent.name}}">{{talent.value}}
+                    </label>
+                </div>
+                
+                <div class="resource-value .{{key}}" data-value="{{talent.value}}" data-name="data.talent.{{key}}.value">
+                    <div class="skill-circles">
+                        {{#numLoop 10}}
+                            <span class="resource-value-step" data-index="{{this}}"></span>
+                        {{/numLoop}}
+                    </div>
+                </div>
+            </div>
+
+            
+            {{/each}}
+        </div>
+
+        <div class="actor-skills">
+            {{#each data.skills as |skill key|}}
+            <div class="actor-abilitie-row">
+
+                <div class="abilitie-name-label">
+                    <label for="data.skill.{{key}}.value" class="resource-label vrollable"
+                        data-roll="{{skill.value}}" data-label="{{localize skill.name}}">{{localize skill.name}}
+                    </label>
+                </div>
+                
+                <div class="abilitie-value-label">
+                    <label for="data.skill.{{key}}.value" class="resource-row-label"
+                        data-roll="{{skill.value}}" data-label="{{localize skill.name}}">{{skill.value}}
+                    </label>
+                </div>
+                
+                <div class="resource-value .{{key}}" data-value="{{skill.value}}" data-name="data.skill.{{key}}.value">
+                    <div class="skill-circles">
+                        {{#numLoop 10}}
+                            <span class="resource-value-step" data-index="{{this}}"></span>
+                        {{/numLoop}}
+                    </div>
+                </div>
+            </div>
+
+            
+            {{/each}}
+        </div>
+        
+        <div class="actor-knowledges">
+            {{#each data.knowledges as |knowledge key|}}
+            <div class="actor-abilitie-row">
+
+                <div class="abilitie-name-label">
+                    <label for="data.knowledge.{{key}}.value" class="resource-label vrollable"
+                        data-roll="{{knowledge.value}}" data-label="{{localize knowledge.name}}">{{localize knowledge.name}}
+                    </label>
+                </div>
+                
+                <div class="abilitie-value-label">
+                    <label for="data.knowledge.{{key}}.value" class="resource-row-label"
+                        data-roll="{{knowledge.value}}" data-label="{{localize knowledge.name}}">{{knowledge.value}}
+                    </label>
+                </div>
+                
+                <div class="resource-value .{{key}}" data-value="{{knowledge.value}}" data-name="data.knowledge.{{key}}.value">
+                    <div class="knowledge-circles">
+                        {{#numLoop 10}}
+                            <span class="resource-value-step" data-index="{{this}}"></span>
+                        {{/numLoop}}
+                    </div>
+                </div>
+            </div>
+
+            
+            {{/each}}
+        </div>
+
+    </section>
+
+    <div class="summary-skills actor-generation">
+        <input name="generation" type="text" value="{{actor.generation}}" placeholder="{{ localize 'DAV20.Generation' }}"/>
+    </div>
+
+    <aside class="header-exp">
+        <div class="experience">
+            <input name="data.experience" type="text" value="{{data.experience}}" placeholder="0" data-dtype="Number"/>
+            <span class="sep">/</span>
+            <span class="data.experienceSpent">{{data.experienceSpent}}</span>
+        </div>
+    </aside>
 
     <section class="items">
         <h3>Owned Items</h3>
