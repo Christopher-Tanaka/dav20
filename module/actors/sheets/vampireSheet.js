@@ -49,10 +49,12 @@ export class VampireSheet extends ActorSheet {
   activateListeners (html) {
     console.log("dav20 | activating listeners...");
 
-    this._setupDotCounters(html)
     super.activateListeners(html)
-    html.find('.resource-value > .resource-value-step').click(this._onDotCounterChange.bind(this))
-    html.find('.resource-value > .resource-value-empty').click(this._onDotCounterEmpty.bind(this))
+
+    this._setupDotCounters(html)
+    
+    html.find('.resource-value-step').click(this._onDotCounterChange.bind(this))
+    //html.find('.resource-value-empty').click(this._onDotCounterEmpty.bind(this))
 
     if (!this.options.editable) {
         console.log("dav20 | sheet is not editable");
@@ -63,6 +65,8 @@ export class VampireSheet extends ActorSheet {
   }
 
   _onDotCounterEmpty (event) {
+    const actorData = this.actor.data.toObject(false);
+
     console.log("dav20 | _onDotCounterEmpty");
     event.preventDefault()
     if (this.locked) return
@@ -77,16 +81,15 @@ export class VampireSheet extends ActorSheet {
   }
 
   _onDotCounterChange (event) {
-    console.log("dav20 | _onDotCounterChange");
+    event.preventDefault();
 
-    event.preventDefault()
-    if (this.locked) return
+    console.log("dav20 | _onDotCounterChange");
+  
     const element = event.currentTarget
     const dataset = element.dataset
     const index = Number(dataset.index)
-    const parent = $(element.parentNode)
+    const parent = $(element.parentNode.parentNode)
     const fieldStrings = parent[0].dataset.name
-    const fields = fieldStrings.split('.')
     const steps = parent.find('.resource-value-step')
     if (index < 0 || index > steps.length) {
         console.log("dav20 |  Invalid index")
@@ -101,39 +104,52 @@ export class VampireSheet extends ActorSheet {
       }
     })
 
+    let currentValue = Number(parent[0].dataset.value);
+    let newValue = 0;
+    if(index == 0 && currentValue == 1)
+      newValue = index;
+    else
+      newValue = index + 1;
 
-    this._assignToActorField(fields, index)
+    return this.actor.update({ [fieldStrings]: newValue })
   }
 
   _setupDotCounters (html) {
-    const actorData = this.actor.data.toObject(false);
     console.log("_setupDotCounters")
 
-    if ( actorData.data.abilities ) {
-        
-        for ( let [a, abl] of Object.entries(actorData.data.abilities)) {
-
-            if(abl.value < 0) {
-                console.log("Negative value for: "+ a )   
-                continue
-            }
-
-            console.log("Ability value: " +  abl.value + " for " + a ) 
-
-            html.find('.resource-value').each(function () {
-                const value = Number(this.dataset.value)
-                $(this).find('.resource-value-step').each(function (i) {
-                    if (i <= value) {
-                        $(this).addClass('active')
-                    }
-                    
-                    if (abl.value == 0) {
-                        $(this).removeClass('active')
-                    }
-                })
-            })
+    html.find('.resource-value').each(function () {
+      const value = Number(this.dataset.value)
+      $(this).find('.resource-value-step').each(function (i) {
+        if (i + 1 <= value) {
+          $(this).addClass('active')
         }
-    }
+      })
+    })
+    html.find('.resource-value-static').each(function () {
+      const value = Number(this.dataset.value)
+      $(this).find('.resource-value-static-step').each(function (i) {
+        if (i + 1 <= value) {
+          $(this).addClass('active')
+        }
+      })
+    })
+
+  }
+
+  _debug() {
+    const actorData = this.actor.data.toObject(false);
+    if ( actorData.data.skills ) {
+        
+      for ( let [a, abl] of Object.entries(actorData.data.skills)) {
+
+          if(abl.value < 0) {
+              console.log("Negative value for: "+ a )   
+              continue
+          }
+
+          console.log("Ability value: " +  abl.value + " for " + a ) 
+      }
+  }
   }
 
    // There's gotta be a better way to do this but for the life of me I can't figure it out

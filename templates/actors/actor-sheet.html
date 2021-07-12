@@ -47,7 +47,117 @@
         <a class="item" data-tab="disciplines">{{ localize "DAV20.Disciplines" }}</a>
         <a class="item" data-tab="rituals">{{ localize "DAV20.Rituals" }}</a>
     </nav>
+
+    <div class="label-attributes">
+        <h1 class="DAV20.Abilities">{{ localize "DAV20.Attributes" }}</h1>
+    </div>
+
+    <section class="attributes-header">
+
+        <div class="physical-attribute">
+            
+            <label class="attribute-title"> {{ localize "DAV20.Physical" }} </label>
+
+            <div class="actor-physical-attributes">
+                {{#each data.physical as |attribute key|}}
+                <div class="actor-attribute-row">
     
+                    <div class="attribute-name-label">
+                        <label for="data.physical.{{key}}.value" class="resource-label vrollable"
+                            data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{localize attribute.name}}
+                        </label>
+                    </div>
+                    
+                    <div class="attribute-value-label">
+                        <label for="data.physical.{{key}}.value" class="resource-row-label"
+                            data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{attribute.value}}
+                        </label>
+                    </div>
+                    
+                    <div class="resource-value" data-value="{{attribute.value}}" data-name="data.physical.{{key}}.value">
+                        <div class="skill-circles">
+                            {{#numLoop 10}}
+                                <span class="resource-value-step" data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    </div>
+                </div>
+    
+                
+                {{/each}}
+            </div>
+
+        </div>
+
+        <div class="social-attribute">
+
+            <label class="attribute-title"> {{ localize "DAV20.Social" }} </label>
+
+            <div class="actor-social-attributes">
+                {{#each data.social as |attribute key|}}
+                <div class="actor-attribute-row">
+    
+                    <div class="attribute-name-label">
+                        <label for="data.social.{{key}}.value" class="resource-label vrollable"
+                            data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{localize attribute.name}}
+                        </label>
+                    </div>
+                    
+                    <div class="attribute-value-label">
+                        <label for="data.social.{{key}}.value" class="resource-row-label"
+                            data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{attribute.value}}
+                        </label>
+                    </div>
+                    
+                    <div class="resource-value" data-value="{{attribute.value}}" data-name="data.social.{{key}}.value">
+                        <div class="skill-circles">
+                            {{#numLoop 10}}
+                                <span class="resource-value-step" data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    </div>
+                </div>
+    
+                
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="mental-attribute">
+
+            <label class="attribute-title"> {{ localize "DAV20.Mental" }} </label>
+
+            <div class="actor-mental-attributes">
+                {{#each data.mental as |attribute key|}}
+                <div class="actor-attribute-row">
+    
+                    <div class="attribute-name-label">
+                        <label for="data.mental.{{key}}.value" class="resource-label vrollable"
+                            data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{localize attribute.name}}
+                        </label>
+                    </div>
+                    
+                    <div class="attribute-value-label">
+                        <label for="data.mental.{{key}}.value" class="resource-row-label"
+                            data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{attribute.value}}
+                        </label>
+                    </div>
+                    
+                    <div class="resource-value" data-value="{{attribute.value}}" data-name="data.mental.{{key}}.value">
+                        <div class="skill-circles">
+                            {{#numLoop 10}}
+                                <span class="resource-value-step" data-index="{{this}}"></span>
+                            {{/numLoop}}
+                        </div>
+                    </div>
+                </div>
+    
+                {{/each}}
+            </div>
+
+        </div>
+
+    </section>
     
     <div class="label-abilitie">
         <label class="DAV20.Abilities">{{ localize "DAV20.Abilities" }}</label>
@@ -86,7 +196,7 @@
                     </label>
                 </div>
                 
-                <div class="resource-value .{{key}}" data-value="{{talent.value}}" data-name="data.talent.{{key}}.value">
+                <div class="resource-value" data-value="{{talent.value}}" data-name="data.talents.{{key}}.value">
                     <div class="skill-circles">
                         {{#numLoop 10}}
                             <span class="resource-value-step" data-index="{{this}}"></span>
@@ -115,7 +225,7 @@
                     </label>
                 </div>
                 
-                <div class="resource-value .{{key}}" data-value="{{skill.value}}" data-name="data.skill.{{key}}.value">
+                <div class="resource-value" data-value="{{skill.value}}" data-name="data.skills.{{key}}.value">
                     <div class="skill-circles">
                         {{#numLoop 10}}
                             <span class="resource-value-step" data-index="{{this}}"></span>
@@ -144,7 +254,7 @@
                     </label>
                 </div>
                 
-                <div class="resource-value .{{key}}" data-value="{{knowledge.value}}" data-name="data.knowledge.{{key}}.value">
+                <div class="resource-value" data-value="{{knowledge.value}}" data-name="data.knowledges.{{key}}.value">
                     <div class="knowledge-circles">
                         {{#numLoop 10}}
                             <span class="resource-value-step" data-index="{{this}}"></span>
@@ -152,7 +262,6 @@
                     </div>
                 </div>
             </div>
-
             
             {{/each}}
         </div>

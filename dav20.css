@@ -16,13 +16,54 @@
   padding: 7px;  
 }
 
+.attributes-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  flex-direction: row;
+}
+
+.attribute-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.physical-attribute {
+  flex: 33%;
+}
+
+.social-attribute {
+  flex: 33%;
+}
+
+.mental-attribute {
+  flex: 33%;
+}
+
+.actor-attribute-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.attribute-name-label {
+  flex: 0.6;
+  max-width: 50%;
+}
+
+.attribute-value-label {
+  flex: 0.2;
+  max-width: 50%;
+}
+
 .label-abilitie {
-  background-color: #575252;
   display: flex;
   align-content: center; 
   justify-content: center;
-  font-size: 20px;
-  font-weight: 700;
+  border-bottom: 2px solid #782e22;
+  border-top: 2px solid #782e22;
+  font-size: 30px;
 }
 
 .actor-abilities-header {
@@ -51,7 +92,6 @@
 .actor-knowledges {
   flex: 33%;
 }
-
 
 .abilities-label {
   font-size: 20px;

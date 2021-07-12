@@ -24,6 +24,7 @@ Hooks.once("init", function() {
         }
     };
 
+    
     CONFIG.DAV20 = DAV20;
     CONFIG.Item.documentClass = ItemDav20;
     CONFIG.Actor.documentClass = VampireActor;
