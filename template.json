@@ -37,38 +37,42 @@
             "biography": "",
             "equipment": "",
             "notes": "",
-            "attributes": {
+            "physical": {
                 "strength": {
                     "value": 0,
                     "name": "DAV20.Strength"
-                  },
-                  "charisma": {
-                    "value": 0,
-                    "name": "DAV20.Charisma"
-                  },
-                  "perception": {
-                    "value": 0,
-                    "name": "DAV20.Perception"
                   },
                   "dexterity": {
                     "value": 0,
                     "name": "DAV20.Dexterity"
                   },
+                  "stamina": {
+                    "value": 0,
+                    "name": "DAV20.Stamina"
+                  }
+              },
+              "social": {
+                  "charisma": {
+                    "value": 0,
+                    "name": "DAV20.Charisma"
+                  },
                   "manipulation": {
                     "value": 0,
                     "name": "DAV20.Manipulation"
                   },
-                  "intelligence": {
-                    "value": 0,
-                    "name": "DAV20.Intelligence"
-                  },
-                  "stamina": {
-                    "value": 0,
-                    "name": "DAV20.Stamina"
-                  },
                   "appearence": {
                     "value": 0,
                     "name": "DAV20.Appearence"
+                  }
+              },
+              "mental": {
+                  "perception": {
+                    "value": 0,
+                    "name": "DAV20.Perception"
+                  },
+                  "intelligence": {
+                    "value": 0,
+                    "name": "DAV20.Intelligence"
                   },
                   "wits": {
                     "value": 0,
@@ -77,77 +81,77 @@
             },
             "talents": {
               "alertness": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Alertness"
               },
               "athletics": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Athletics"
               },
               "awareness": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Awareness"
               },
               "brawl": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Brawl"
               },
               "empathy": {
-                "value":-1,
+                "value":0,
                 "name": "DAV20.Empathy"
               },
               "expression": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Expression"
               },
               "intimidation": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Intimidation"
               },
               "leadership": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Leadership"
               },
               "legerdemain": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Legerdemain"
               },
               "subterfuge": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Subterfuge"
               }
             },
             "skills": {
               "animalKen": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.AnimalKen"
               },
               "archery": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Archery"
               },
               "commerce": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Commerce"
               },
               "crafts": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Crafts"
               },
               "etiquette": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Etiquette"
               },
               "melee": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Melee"
               },
               "performance": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Performance"
               },
               "ride": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Ride"
               },
               "stealth": {
@@ -155,49 +159,49 @@
                 "name": "DAV20.Stealth"
               },
               "survival": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Survival"
               }
             },
             "knowledges": {
               "academics": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Academics"
               },
               "enigmas": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Enigmas"
               },
               "hearthWisdom": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.HearthWisdom"
               },
               "investigation": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Investigation"
               },
               "law": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Law"
               },
               "medicine": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Medicine"
               },
               "occult": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Occult"
               },
               "politics": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Politics"
               },
               "seneschal": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Seneschal"
               },
               "theology": {
-                "value": -1,
+                "value": 0,
                 "name": "DAV20.Theology"
               }
           }          
