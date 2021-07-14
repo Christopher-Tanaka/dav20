@@ -6,6 +6,7 @@
         "templates": {
             "base": {
                 "road": {
+                    "name": "",
                     "value": 0,
                     "max": 10,
                     "aura": ""
@@ -17,8 +18,50 @@
                 },
                 "bloodPool": {
                     "value": 0,
-                    "max": 999,
+                    "max": 30,
                     "maxPerTurn": 1
+                },
+                "sins": {
+                  "sinLevel1":{
+                    "value": "",
+                    "name": "1"
+                  },
+                  "sinLevel2":{
+                    "value": "",
+                    "name": "2"
+                  },
+                  "sinLevel3":{
+                    "value": "",
+                    "name": "3"
+                  },
+                  "sinLevel4":{
+                    "value": "",
+                    "name": "4"
+                  },
+                  "sinLevel5":{
+                    "value": "",
+                    "name": "5"
+                  },
+                  "sinLevel6":{
+                    "value": "",
+                    "name": "6"
+                  },
+                  "sinLevel7":{
+                    "value": "",
+                    "name": "7"
+                  },
+                  "sinLevel8":{
+                    "value": "",
+                    "name": "8"
+                  },
+                  "sinLevel9":{
+                    "value": "",
+                    "name": "9"
+                  },
+                  "sinLevel10":{
+                    "value": "",
+                    "name": "10"
+                  }
                 }
             }
         },
