@@ -177,3 +177,122 @@
       transparent 100%
     );
 }
+
+
+.core-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "roadSinsLabel roadSinsLabel roadLable roadLabel healthLabel healthLabel healthLabel"
+      "roadSins roadSins road road health health health"
+      "roadSins roadSins road road health health health"
+      "roadSins roadSins road road health health health"
+      "roadSins roadSins willPowerLabel willPowerLabel health health health"
+      "roadSins roadSins willPower willPower health health health"
+      "roadSins roadSins willPower willPower health health health"
+      "roadSins roadSins willPower willPower health health health"
+      "roadSins roadSins bloodPoolLabel bloodPoolLabel health health health"
+      "roadSins roadSins bloodPool bloodPool health health health"
+      "roadSins roadSins bloodPool bloodPool health health health"
+      "roadSins roadSins bloodPool bloodPool health health health";
+}
+
+.resource-counter .resource-counter-step {
+  height: 14px;
+  width: 14px;
+  border: 1px solid black;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.resource-counter .resource-counter-step[data-state="-"] {
+  background-color: #790813;
+}
+
+.resource-counter .resource-counter-step[data-state="/"] {
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      black 45%,
+      black 55%,
+      transparent 57%,
+      transparent 100%
+    );
+}
+
+.resource-counter .resource-counter-step[data-state="x"] {
+  background:
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 43%,
+      black 45%,
+      black 55%,
+      transparent 57%,
+      transparent 100%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      black 45%,
+      black 55%,
+      transparent 57%,
+      transparent 100%
+    );
+}
+
+.road-sins-label {
+  grid-area: roadSinsLabel;
+  background-color: blueviolet;
+}
+
+.road-sins {
+  grid-area: roadSins;
+}
+
+.actor-sin-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.road-label {
+  grid-area: roadLable;
+  background-color: gold;
+}
+
+.actor-road {
+  grid-area: road;
+  
+}
+
+.actor-willpower-label {
+  grid-area: willPowerLabel;
+  background-color: lightseagreen;
+}
+
+.actor-willpower {
+  grid-area: willPower;
+}
+
+.actor-bloodpool-label {
+  grid-area: bloodPoolLabel;
+  background-color: lightskyblue;
+}
+
+.blood-pool {
+  grid-area: bloodPool;
+}
+
+.actor-health-label {
+  grid-area: healthLabel;
+  background-color: khaki;
+}
+
+.actor-health {
+  grid-area: health;
+}
+
+

@@ -58,3 +58,13 @@ function rollItemMacro (itemName) {
 
     return ret
   });
+
+  Handlebars.registerHelper('fromUntil', function (start, end, increment, options) {
+    let ret = ''
+
+    for (let i = start, j = end; i <= j; i+=increment) {
+      ret = ret + options.fn(i)
+    }
+
+    return ret
+  });

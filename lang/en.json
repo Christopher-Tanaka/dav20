@@ -80,6 +80,7 @@
 
     "DAV20.OtherTrats": "Other Trats",
     "DAV20.Road": "Road",
+    "DAV20.RoadSins": "Road Sins",
     "DAV20.Health": "Health",
     "DAV20.Bruised": "Bruised",
     "DAV20.Hurt": "Hurt",
@@ -90,7 +91,7 @@
     "DAV20.Incapacitated": "Incapacitated",
 
     "DAV20.Aura": "Aura",
-    "DAV20.Willpower": "Aura",
+    "DAV20.Willpower": "Willpower",
     "DAV20.BloodPool": "Blood Pool",
     "DAV20.Weakness": "Weakness",
 

@@ -16,6 +16,7 @@ export class VampireSheet extends ActorSheet {
         height: 700,
         classes: ["dav20", "sheet", "actor"],
         resizable: true,
+        popOut: true,
         scrollY: [".tab.details"],
         tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
       });
@@ -134,22 +135,6 @@ export class VampireSheet extends ActorSheet {
       })
     })
 
-  }
-
-  _debug() {
-    const actorData = this.actor.data.toObject(false);
-    if ( actorData.data.skills ) {
-        
-      for ( let [a, abl] of Object.entries(actorData.data.skills)) {
-
-          if(abl.value < 0) {
-              console.log("Negative value for: "+ a )   
-              continue
-          }
-
-          console.log("Ability value: " +  abl.value + " for " + a ) 
-      }
-  }
   }
 
    // There's gotta be a better way to do this but for the life of me I can't figure it out
