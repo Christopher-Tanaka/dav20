@@ -13,6 +13,12 @@ DAV20.damageTypes = {
     Aggravated: "WeaponDamageType.Aggravated"
 };
 
+DAV20.injuryTypes = {
+    Bashing: "HealthInjuryType.Bashing",
+    Lethal: "HealthInjuryType.Lethal",
+    Aggravated: "HealthInjuryType.Aggravated"
+};
+
 DAV20.abilitiesAvailable = {
     Alertness: "DAV20.Alertness",
     AnimalKen: "DAV20.AnimalKen",

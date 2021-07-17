@@ -247,8 +247,54 @@
                 "value": 0,
                 "name": "DAV20.Theology"
               }
+          },
+          "healthLevels": {
+            "bruised": {
+              "injuryTypes": "",
+              "penalty": 0,
+              "name": "DAV20.Bruised",
+              "level": 1
+            },
+            "hurt": {
+              "injuryTypes": "",
+              "penalty": -1,
+              "name": "DAV20.Hurt",
+              "level": 2
+
+            },
+            "injured": {
+              "injuryTypes": "",
+              "penalty": -1,
+              "name": "DAV20.Injured",
+              "level": 3
+            },
+            "wounded": {
+              "injuryTypes": "",
+              "penalty": -2,
+              "name": "DAV20.Wounded",
+              "level": 4
+            },
+            "mauled": {
+              "injuryTypes": "",
+              "penalty": -3,
+              "name": "DAV20.Mauled",
+              "level": 5
+            },
+            "crippled": {
+              "injuryTypes": "",
+              "penalty": -5,
+              "name": "DAV20.Crippled",
+              "level": 6
+            },
+            "incapacitated": {
+              "injuryTypes": "",
+              "penalty": 0,
+              "name": "DAV20.Incapacitated",
+              "level": 7
+            }
           }          
         }
+         
     },
     "Item":{
         "types": [

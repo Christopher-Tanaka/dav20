@@ -181,7 +181,7 @@
 
 .core-footer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr .5fr .5fr;
   grid-template-rows: 1fr;
   grid-template-areas: "roadSinsLabel roadSinsLabel roadLable roadLabel healthLabel healthLabel healthLabel"
       "roadSins roadSins road road health health health"
@@ -244,9 +244,58 @@
     );
 }
 
+.resource-health .resource-health-step {
+  height: 14px;
+  width: 14px;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+.resource-health .resource-health-step[data-state="-"] {
+  background-color: #790813;
+}
+
+.resource-health .resource-health-step[data-state="/"] {
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      #790813,
+      #790813,
+      transparent 57%,
+      transparent 100%
+    );
+}
+
+.resource-health .resource-health-step[data-state="X"] {
+  background:
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 43%,
+      #790813,
+      #790813,
+      transparent 57%,
+      transparent 100%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      #790813,
+      #790813,
+      transparent 57%,
+      transparent 100%
+    );
+}
+
 .road-sins-label {
   grid-area: roadSinsLabel;
-  background-color: blueviolet;
 }
 
 .road-sins {
@@ -260,7 +309,6 @@
 
 .road-label {
   grid-area: roadLable;
-  background-color: gold;
 }
 
 .actor-road {
@@ -270,7 +318,6 @@
 
 .actor-willpower-label {
   grid-area: willPowerLabel;
-  background-color: lightseagreen;
 }
 
 .actor-willpower {
@@ -279,7 +326,6 @@
 
 .actor-bloodpool-label {
   grid-area: bloodPoolLabel;
-  background-color: lightskyblue;
 }
 
 .blood-pool {
@@ -288,11 +334,30 @@
 
 .actor-health-label {
   grid-area: healthLabel;
-  background-color: khaki;
 }
 
 .actor-health {
   grid-area: health;
+  display: flex;
+  flex-direction: column;
 }
 
+.resource-health {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+}
+
+.rosource-health-row {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.health-row-label {
+  flex: 33%;
+  flex-grow: 1;
+}
 

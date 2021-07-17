@@ -340,7 +340,7 @@
 
 
         <div class="actor-bloodpool-label">
-            <label class="bloodpool-label"> {{ localize "DAV20.Bloodpool" }} </label>
+            <label class="bloodpool-label"> {{ localize "DAV20.BloodPool" }} </label>
         </div>
 
         <div class="blood-pool">
@@ -359,12 +359,24 @@
         </div>
 
         <div class="actor-health">
-            <div class="resource-content">
-                <div class="resource-counter" data-states="/:superficial,x:aggravated" data-max="{{data.data.willpower.max}}" data-superficial="{{data.data.willpower.superficial}}" data-aggravated="{{data.data.willpower.aggravated}}" data-name="data.willpower">
-                    {{#numLoop 7}}
-                    <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
-                    {{/numLoop}}
-                </div>
+            <div class="resource-health">
+                
+                    {{#each data.healthLevels as |health key|}}
+
+                        <div class="rosource-health-row">
+
+                            <label for="data.healthLevels.{{key}}.injuryTypes" class="health-row-label"
+                            data-label="{{localize health.name}}">{{localize health.name}} </label>
+                            
+                            <label for="data.healthLevels.{{key}}.penalty" class="health-row-label"
+                            data-label="{{health.penalty}}">{{health.penalty}} </label>
+
+                            <span class="resource-health-step" data-level="{{health.level}}" data-state="{{health.injuryTypes}}" id="data.healthLevels.{{key}}.injuryTypes"></span>
+
+                     </div>
+
+
+                    {{/each}}
             </div>
         </div>
 

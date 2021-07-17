@@ -111,6 +111,11 @@
     "WeaponDamageType.Lethal": "Lethal (L)",
     "WeaponDamageType.Aggravated": "Aggravated (A)",
 
+    "HealthInjuryType.Aggravated": "X",
+    "HealthInjuryType.Lethal": "/",
+    "HealthInjuryType.Bashing": "-",
+    
+
     "WeaponNotes": "Notes"
 
 }

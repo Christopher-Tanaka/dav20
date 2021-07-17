@@ -53,8 +53,11 @@ export class VampireSheet extends ActorSheet {
     super.activateListeners(html)
 
     this._setupDotCounters(html)
+    this._setupHealthCounters(html)
     
     html.find('.resource-value-step').click(this._onDotCounterChange.bind(this))
+    html.find('.resource-health-step').click(this._onHealthCounterClick.bind(this))
+    html.find('.resource-counter-step').click(this._onSquareCounterClick.bind(this))
     //html.find('.resource-value-empty').click(this._onDotCounterEmpty.bind(this))
 
     if (!this.options.editable) {
@@ -131,6 +134,77 @@ export class VampireSheet extends ActorSheet {
       $(this).find('.resource-value-static-step').each(function (i) {
         if (i + 1 <= value) {
           $(this).addClass('active')
+        }
+      })
+    })
+
+  }
+
+  _onSquareCounterClick (event) {
+    event.preventDefault();
+
+    console.log("dav20 | _onDotCounterChange");
+
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    const level = Number(dataset.level);
+
+    let currentState = dataset.state;
+    let newState = ""
+    
+    switch (currentState) {
+      case "-": newState = "/"; break;
+      case "/": newState = "X"; break;
+      case "X": newState = ""; break;
+      case "": newState = "-"; break;
+    }
+
+    console.log("dav20 | _onDotCounterChange");
+
+    return this.actor.update({ [fieldStrings]: newValue })
+  }
+
+  _onHealthCounterClick (event) {
+    event.preventDefault();
+    const damageTypes = ["", "-", "/", "X"]
+
+    console.log("dav20 | _onDotCounterChange");
+    
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+    const key = element.id;
+
+    let currentState = dataset.state;
+    let newState = ""
+    
+    switch (currentState) {
+      case "": newState = "-"; break;
+      case "-": newState = "/"; break;
+      case "/": newState = "X"; break;
+      case "X": newState = ""; break;
+
+      default: newState = "-"
+    }
+
+    if(key == "") {
+      console.log("dav20 | empty key to update health")
+      return
+    }
+
+    return this.actor.update({ [element.id]: newState })
+  }
+
+  _setupHealthCounters (html) {
+    html.find('.resource-health').each(function () {
+
+      console.log("dav20 | _setupHealthCounters")
+
+      $(this).find('.resource-health-step').each(function (i) {
+        const state = this.dataset.state
+        const level = Number(this.dataset.level)
+
+        if (i + 1 <= level) {
+          $(this).state = state
         }
       })
     })
