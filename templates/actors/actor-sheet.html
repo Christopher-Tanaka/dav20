@@ -319,16 +319,16 @@
         </div>
 
         <div class="actor-willpower">
-            <div class="resource-value" data-value="{{data.willpower.value}}" data-name="data.willpower.value">
+            <div class="resource-value" data-value="{{data.willpower.value}}" id="data.willpower.value">
                 <div class="willpower-circles">
                     {{#numLoop 10}}
-                        <span class="resource-value-step" data-index="{{this}}"></span>
+                        <span class="resource-value-step" data-index="{{this}}" data-level="{{data.willpower.value}}"></span>
                     {{/numLoop}}
                 </div>
             </div>
 
             <div class="resource-content">
-                <div class="resource-counter" data-states="/:superficial,x:aggravated" data-max="{{data.data.willpower.max}}" data-superficial="{{data.data.willpower.superficial}}" data-aggravated="{{data.data.willpower.aggravated}}" data-name="data.willpower">
+                <div class="resource-counter" data-value="{{data.willpower.tempValue}}" id="data.willpower.tempValue">
                     {{#numLoop 10}}
                     <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
                     {{/numLoop}}
@@ -336,8 +336,6 @@
             </div>
 
         </div>
-
-
 
         <div class="actor-bloodpool-label">
             <label class="bloodpool-label"> {{ localize "DAV20.BloodPool" }} </label>
@@ -345,12 +343,65 @@
 
         <div class="blood-pool">
             <div class="resource-content">
-                <div class="resource-counter" data-states="/:superficial,x:aggravated" data-max="{{data.data.willpower.max}}" data-superficial="{{data.data.willpower.superficial}}" data-aggravated="{{data.data.willpower.aggravated}}" data-name="data.willpower">
+                <div class="resource-counter" data-value="{{data.bloodPool.value}}" id="data.bloodPool.value">
                     {{#numLoop 60}}
                     <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
                     {{/numLoop}}
                 </div>
             </div>
+        </div>
+
+        <div class="actor-virtues-label">
+            <label class="virtues-label">{{ localize "DAV20.Virtues" }}</label>
+        </div>
+
+        <div class="actor-virtues">
+            
+
+            <div class="conscience-conviction" data-value="{{data.virtues.conscienteConviction.value}}" id="data.conscienteConviction.value">
+
+                <select name="data.virtues.conscienteConviction.option">
+                    {{#select data.virtues.conscienteConviction.option}}
+                        <option value=""></option>
+                        {{#each config.ConscienceConviction as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                </select>
+
+                <div class="resource-value" data-value="{{data.virtues.conscienteConviction.value}}" data-name="data.virtues.conscienteConviction.value">
+                    <div class="conscienteConviction-circles">
+                        {{#numLoop 10}}
+                            <span class="resource-value-step" data-index="{{this}}"></span>
+                        {{/numLoop}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="selfcontrol-instinct" data-value="{{data.virtues.selfControlInstinct.value}}" id="data.selfControlInstinct.value">
+
+                <select name="data.virtues.selfControlInstinct.option">
+                    {{#select data.virtues.selfControlInstinct.option}}
+                        <option value=""></option>
+                        {{#each config.SelfControlInstinct as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                </select>
+
+                <div class="resource-value" data-value="{{data.virtues.selfControlInstinct.value}}" data-name="data.virtues.selfControlInstinct.value">
+                    <div class="selfControlInstinct-circles">
+                        {{#numLoop 10}}
+                            <span class="resource-value-step" data-index="{{this}}"></span>
+                        {{/numLoop}}
+                    </div>
+                </div>
+
+
+
+            </div>
+
         </div>
 
 

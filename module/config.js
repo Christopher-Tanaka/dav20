@@ -19,6 +19,16 @@ DAV20.injuryTypes = {
     Aggravated: "HealthInjuryType.Aggravated"
 };
 
+DAV20.ConscienceConviction = {
+    Conscience: "DAV20.Conscience",
+    Conviction: "DAV20.Conviction"
+};
+
+DAV20.SelfControlInstinct = {
+    SelfControl: "DAV20.SelfControl",
+    Instinct: "DAV20.Instinct"
+};
+
 DAV20.abilitiesAvailable = {
     Alertness: "DAV20.Alertness",
     AnimalKen: "DAV20.AnimalKen",

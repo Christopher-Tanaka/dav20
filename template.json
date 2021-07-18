@@ -292,6 +292,20 @@
               "name": "DAV20.Incapacitated",
               "level": 7
             }
+          },
+          "virtues": {
+            "conscienteConviction": {
+              "option": "DAV20.Conscience",
+              "value": 1
+            },
+            "selfControlInstinct": {
+              "option": "DAV20.SelfControl",
+              "value": 1
+            },
+            "Courage": {
+              "name": "DAV20.Courage",
+              "value": 1
+            }
           }          
         }
          

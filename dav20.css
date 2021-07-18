@@ -183,14 +183,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr .5fr .5fr;
   grid-template-rows: 1fr;
-  grid-template-areas: "roadSinsLabel roadSinsLabel roadLable roadLabel healthLabel healthLabel healthLabel"
-      "roadSins roadSins road road health health health"
-      "roadSins roadSins road road health health health"
-      "roadSins roadSins road road health health health"
-      "roadSins roadSins willPowerLabel willPowerLabel health health health"
+  grid-template-areas: "roadSinsLabel roadSinsLabel roadLable roadLabel virtuesLabel virtuesLabel virtuesLabel"
+      "roadSins roadSins road road virtues virtues virtues"
+      "roadSins roadSins road road virtues virtues virtues"
+      "roadSins roadSins willPowerLabel willPowerLabel virtues virtues virtues"
+      "roadSins roadSins willPower willPower healthLabel healthLabel healthLabel"
       "roadSins roadSins willPower willPower health health health"
       "roadSins roadSins willPower willPower health health health"
-      "roadSins roadSins willPower willPower health health health"
+      "roadSins roadSins bloodPoolLabel bloodPoolLabel health health health"
       "roadSins roadSins bloodPoolLabel bloodPoolLabel health health health"
       "roadSins roadSins bloodPool bloodPool health health health"
       "roadSins roadSins bloodPool bloodPool health health health"
@@ -203,6 +203,10 @@
   border: 1px solid black;
   display: inline-block;
   cursor: pointer;
+}
+
+.resource-counter .resource-counter-step.active{
+  background-color: #790813;
 }
 
 .resource-counter .resource-counter-step[data-state="-"] {
@@ -330,6 +334,14 @@
 
 .blood-pool {
   grid-area: bloodPool;
+}
+
+.actor-virtues-label {
+  grid-area: virtuesLabel;
+}
+
+.actor-virtues {
+  grid-area: virtues;
 }
 
 .actor-health-label {

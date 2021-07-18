@@ -53,6 +53,7 @@ export class VampireSheet extends ActorSheet {
     super.activateListeners(html)
 
     this._setupDotCounters(html)
+    this._setupResourceCounters(html)
     this._setupHealthCounters(html)
     
     html.find('.resource-value-step').click(this._onDotCounterChange.bind(this))
@@ -147,26 +148,55 @@ export class VampireSheet extends ActorSheet {
 
     const element = event.currentTarget;
     const dataset = element.dataset;
-    const level = Number(dataset.level);
+    const index = Number(dataset.index);
+    const parent = $(element.parentNode);
+    const fieldStrings = parent[0].id;
+    const steps = parent.find('.resource-counter-step');
 
-    let currentState = dataset.state;
-    let newState = ""
-    
-    switch (currentState) {
-      case "-": newState = "/"; break;
-      case "/": newState = "X"; break;
-      case "X": newState = ""; break;
-      case "": newState = "-"; break;
+    if (index < 0) {
+      return
     }
 
-    console.log("dav20 | _onDotCounterChange");
+    steps.each(function (i) {
+      if (i <= index) {
+        console.log("dav20 | activate until index: " + index)
+
+        $(this).addClass('active')
+      }
+    })
+    
+    let currentValue = Number(parent[0].dataset.value);
+    let newValue = 0;
+    if(index == 0 && currentValue == 1)
+      newValue = index;
+    else
+      newValue = index + 1
 
     return this.actor.update({ [fieldStrings]: newValue })
   }
 
+  _setupResourceCounters (html) {
+    html.find('.resource-counter').each(function () {
+      const value = Number(this.dataset.value)
+      $(this).find('.resource-counter-step').each(function (i) {
+        if (i + 1 <= value) {
+          $(this).addClass('active')
+        }
+      })
+    })
+    html.find('.resource-counter-static').each(function () {
+      const value = Number(this.dataset.value)
+      $(this).find('.resource-counter-static-step').each(function (i) {
+        if (i + 1 <= value) {
+          $(this).addClass('active')
+        }
+      })
+    })
+
+  }
+
   _onHealthCounterClick (event) {
     event.preventDefault();
-    const damageTypes = ["", "-", "/", "X"]
 
     console.log("dav20 | _onDotCounterChange");
     
