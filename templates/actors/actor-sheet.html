@@ -48,16 +48,18 @@
         <a class="item" data-tab="rituals">{{ localize "DAV20.Rituals" }}</a>
     </nav>
 
-    <div class="label-attributes">
-        <h1 class="DAV20.Abilities">{{ localize "DAV20.Attributes" }}</h1>
-    </div>
+    <h2 class="DAV20.Abilities">{{ localize "DAV20.Attributes" }}</h2>
+
+    <section class="header-segments">
+        <label class="attribute-title"> {{ localize "DAV20.Physical" }} </label>
+        <label class="attribute-title"> {{ localize "DAV20.Social" }} </label>
+        <label class="attribute-title"> {{ localize "DAV20.Mental" }} </label>
+    </section>
 
     <section class="attributes-header">
 
         <div class="physical-attribute">
             
-            <label class="attribute-title"> {{ localize "DAV20.Physical" }} </label>
-
             <div class="actor-physical-attributes">
                 {{#each data.physical as |attribute key|}}
                 <div class="actor-attribute-row">
@@ -91,7 +93,7 @@
 
         <div class="social-attribute">
 
-            <label class="attribute-title"> {{ localize "DAV20.Social" }} </label>
+            
 
             <div class="actor-social-attributes">
                 {{#each data.social as |attribute key|}}
@@ -125,7 +127,7 @@
 
         <div class="mental-attribute">
 
-            <label class="attribute-title"> {{ localize "DAV20.Mental" }} </label>
+            
 
             <div class="actor-mental-attributes">
                 {{#each data.mental as |attribute key|}}
@@ -159,23 +161,14 @@
 
     </section>
     
-    <div class="label-abilitie">
-        <label class="DAV20.Abilities">{{ localize "DAV20.Abilities" }}</label>
-    </div>
-    
 
-    <section class="actor-abilities-header">
-        <div class="abilitie-header">
-            <label class="abilities-label"> {{ localize "DAV20.Talents" }} </label>
-        </div>
+    <h2 class="DAV20.Abilities">{{ localize "DAV20.Disciplines" }}</h2>
 
-        <div class="abilitie-header abilities-label">
-            <label class="abilities-label">{{ localize "DAV20.Skills" }}</label>
-        </div>
 
-        <div class="abilitie-header abilities-label">
-            <label class="abilities-label"> {{ localize "DAV20.Knowledges" }}</label>
-        </div>
+    <section class="header-segments">
+        <label class="abilities-label talents"> {{ localize "DAV20.Talents" }} </label>
+        <label class="abilities-label skills">{{ localize "DAV20.Skills" }}</label>
+        <label class="abilities-label knowledges"> {{ localize "DAV20.Knowledges" }}</label>
     </section>
     
     <section class="actor-abilities">

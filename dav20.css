@@ -1,109 +1,204 @@
-.profile-img {
+.dav20 {
+  /* ----------------------------------------- */
+  /*  Element Styles                           */
+  /* ----------------------------------------- */
+  /* Form Groups */
+  /* Tags */
+}
+
+.dav20 h2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  border-bottom: 2px solid #300b0b;
+  margin-top: 15px;
+  opacity: .5;
+}
+
+.dav20 input[type="text"],
+.dav20 input[type="number"],
+.dav20 select {
+  height: calc(100% - 2px);
+  border: 1px solid #7a7971;
+  background: rgba(0, 0, 0, 0.05);
+  color: #191813;
+}
+.dav20 input[type="text"]:hover,
+.dav20 input[type="number"]:hover,
+.dav20 input[type="text"]:focus,
+.dav20 input[type="number"]:focus {
+  border: 1px solid rgb(31, 9, 9);
+  box-shadow: 0 0 8px rgb(134, 3, 3);
+}
+.dav20 input:disabled,
+.dav20 select:disabled,
+.dav20 textarea:disabled {
+  color: #4b4a44;
+  border: 1px solid transparent !important;
+  outline: none !important;
+}
+.dav20 input:disabled:hover,
+.dav20 select:disabled:hover,
+.dav20 textarea:disabled:hover,
+.dav20 input:disabled:focus,
+.dav20 select:disabled:focus,
+.dav20 textarea:disabled:focus {
+  box-shadow: none !important;
+  border: 1px solid transparent !important;
+  outline: none !important;
+}
+
+.dav20 .profile-img {
   min-width: 100px;
   min-height: 100px;
 }
 
-.actor-profile {
+.dav20 .actor-profile {
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
 }
 
-.summary-info {
+.dav20 .summary-info {
   flex: 25%;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 500;
   padding: 7px;  
 }
 
-.attributes-header {
+.dav20 .sheet-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.dav20 .sheet-navigation .item {
+  height: 30px;
+  line-height: 32px;
+  margin: 0 50px;
+  border-bottom: 3px solid #b5b3a4;
+}
+
+.dav20.sheet .sheet-navigation .item.active {
+  border-bottom: 3px solid #300b0b;
+}
+
+.dav20 .header-segments {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+
+/*
+.dav20 .header-segments {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+*/
+
+.dav20 .attributes-header {
   display: flex;
   flex-wrap: wrap;
-  align-content: space-between;
+  align-content: space-around;
   flex-direction: row;
 }
 
-.attribute-title {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.physical-attribute {
+.dav20 .physical-attribute {
   flex: 33%;
 }
 
-.social-attribute {
+.dav20 .social-attribute {
   flex: 33%;
 }
 
-.mental-attribute {
+.dav20 .mental-attribute {
   flex: 33%;
 }
 
-.actor-attribute-row {
+.dav20 .actor-attribute-row {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-.attribute-name-label {
+.dav20 .attribute-name-label {
   flex: 0.6;
   max-width: 50%;
+  font-size: 15px;
+  font-weight: 500;
 }
 
-.attribute-value-label {
+.dav20 .resource-label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.dav20 .attribute-value-label {
   flex: 0.2;
   max-width: 50%;
 }
 
-.label-abilitie {
+.dav20 .label-abilitie {
   display: flex;
   align-content: center; 
   justify-content: center;
   border-bottom: 2px solid #782e22;
   border-top: 2px solid #782e22;
-  font-size: 30px;
+  font-size: 20px;
 }
 
-.actor-abilities-header {
+.dav20 .actor-abilities-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 
-.actor-abilities {
+.dav20 .actor-abilities {
   display: flex;
   flex-direction: row;
   font-size: 15px;
   align-content: flex-start;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.actor-talents {
+.dav20.actor-talents {
   flex: 33%;
 }
 
-.actor-skills {
+.dav20 .actor-skills {
   flex: 33%;
 }
 
-.actor-knowledges {
+.dav20 .actor-knowledges {
   flex: 33%;
 }
 
-.abilities-label {
-  font-size: 20px;
-  font-weight: 700;   
-}
-
-.resource-row-label {
+.dav20 .resource-row-label {
   padding-right: 3px;
   padding-left: 3px;
 }
 
-.actor-abilitie-row {
+.dav20 .actor-abilitie-row {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -111,12 +206,12 @@
   padding: 5px;
 }
 
-.abilitie-name-label {
+.dav20 .abilitie-name-label {
   flex: 0.6;
   max-width: 50%;
 }
 
-.abilitie-value-label {
+.dav20 .abilitie-value-label {
   flex: 0.2;
   max-width: 50%;
 }
@@ -124,7 +219,7 @@
 
 /* Resource boxes CSS */
 
-.resource-value .resource-value-step { 
+.dav20 .resource-value .resource-value-step { 
   padding-top: 1px; 
   height: 13px;
   width: 13px;
@@ -134,11 +229,11 @@
   cursor: pointer;
 }
 
-.resource-value .resource-value-step.active {
+.dav20 .resource-value .resource-value-step.active {
   background-color: #790813;
 }
 
-.resource-value-static .resource-value-static-step {
+.dav20 .resource-value-static .resource-value-static-step {
   height: 13px;
   width: 13px;
   border: 1px solid black;
@@ -146,11 +241,11 @@
   border-radius: 50%;
 }
 
-.resource-value-static .resource-value-static-step.active {
+.dav20 .resource-value-static .resource-value-static-step.active {
   background-color: #790813;
 }
 
-.resource-value .resource-value-empty {
+.dav20 .resource-value .resource-value-empty {
   height: 13px;
   width: 13px;
   border: 1px solid black;
@@ -179,7 +274,7 @@
 }
 
 
-.core-footer {
+.dav20 .core-footer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr .5fr .5fr;
   grid-template-rows: 1fr;
@@ -197,7 +292,7 @@
       "roadSins roadSins bloodPool bloodPool health health health";
 }
 
-.resource-counter .resource-counter-step {
+.dav20 .resource-counter .resource-counter-step {
   height: 14px;
   width: 14px;
   border: 1px solid black;
@@ -205,15 +300,15 @@
   cursor: pointer;
 }
 
-.resource-counter .resource-counter-step.active{
+.dav20 .resource-counter .resource-counter-step.active{
   background-color: #790813;
 }
 
-.resource-counter .resource-counter-step[data-state="-"] {
+.dav20 .resource-counter .resource-counter-step[data-state="-"] {
   background-color: #790813;
 }
 
-.resource-counter .resource-counter-step[data-state="/"] {
+.dav20 .resource-counter .resource-counter-step[data-state="/"] {
   background:
     linear-gradient(
       135deg,
@@ -226,7 +321,7 @@
     );
 }
 
-.resource-counter .resource-counter-step[data-state="x"] {
+.dav20 .resource-counter .resource-counter-step[data-state="x"] {
   background:
     linear-gradient(
       45deg,
@@ -248,7 +343,7 @@
     );
 }
 
-.resource-health .resource-health-step {
+.dav20 .resource-health .resource-health-step {
   height: 14px;
   width: 14px;
   border: 1px solid black;
@@ -259,11 +354,11 @@
   justify-content: space-between;
 }
 
-.resource-health .resource-health-step[data-state="-"] {
+.dav20 .resource-health .resource-health-step[data-state="-"] {
   background-color: #790813;
 }
 
-.resource-health .resource-health-step[data-state="/"] {
+.dav20 .resource-health .resource-health-step[data-state="/"] {
   background:
     linear-gradient(
       135deg,
@@ -276,7 +371,7 @@
     );
 }
 
-.resource-health .resource-health-step[data-state="X"] {
+.dav20 .resource-health .resource-health-step[data-state="X"] {
   background:
     linear-gradient(
       45deg,
@@ -298,77 +393,77 @@
     );
 }
 
-.road-sins-label {
+.dav20 .road-sins-label {
   grid-area: roadSinsLabel;
 }
 
-.road-sins {
+.dav20 .road-sins {
   grid-area: roadSins;
 }
 
-.actor-sin-row {
+.dav20 .actor-sin-row {
   display: flex;
   flex-direction: row;
 }
 
-.road-label {
+.dav20 .road-label {
   grid-area: roadLable;
 }
 
-.actor-road {
+.dav20 .actor-road {
   grid-area: road;
   
 }
 
-.actor-willpower-label {
+.dav20 .actor-willpower-label {
   grid-area: willPowerLabel;
 }
 
-.actor-willpower {
+.dav20 .actor-willpower {
   grid-area: willPower;
 }
 
-.actor-bloodpool-label {
+.dav20 .actor-bloodpool-label {
   grid-area: bloodPoolLabel;
 }
 
-.blood-pool {
+.dav20 .blood-pool {
   grid-area: bloodPool;
 }
 
-.actor-virtues-label {
+.dav20 .actor-virtues-label {
   grid-area: virtuesLabel;
 }
 
-.actor-virtues {
+.dav20 .actor-virtues {
   grid-area: virtues;
 }
 
-.actor-health-label {
+.dav20 .actor-health-label {
   grid-area: healthLabel;
 }
 
-.actor-health {
+.dav20 .actor-health {
   grid-area: health;
   display: flex;
   flex-direction: column;
 }
 
-.resource-health {
+.dav20 .resource-health {
   display: flex;
   flex-direction: column;
   height: 100%;
   
 }
 
-.rosource-health-row {
+.dav20 .rosource-health-row {
   display: flex;
   flex-direction: row;
   align-content: center;
   justify-content: center;
 }
 
-.health-row-label {
+.dav20 .health-row-label {
   flex: 33%;
   flex-grow: 1;
 }
