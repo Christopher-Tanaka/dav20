@@ -93,7 +93,7 @@ export class VampireSheet extends ActorSheet {
     const element = event.currentTarget
     const dataset = element.dataset
     const index = Number(dataset.index)
-    const parent = $(element.parentNode.parentNode)
+    const parent = $(element.parentNode)
     const fieldStrings = parent[0].dataset.name
     const steps = parent.find('.resource-value-step')
     if (index < 0 || index > steps.length) {
