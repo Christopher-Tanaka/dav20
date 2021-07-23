@@ -122,7 +122,7 @@
                     "name": "DAV20.Wits"
                   }
             },
-            "talents": {
+            "abilities": {
               "alertness": {
                 "value": 0,
                 "name": "DAV20.Alertness"
@@ -162,9 +162,7 @@
               "subterfuge": {
                 "value": 0,
                 "name": "DAV20.Subterfuge"
-              }
-            },
-            "skills": {
+              },
               "animalKen": {
                 "value": 0,
                 "name": "DAV20.AnimalKen"
@@ -204,9 +202,7 @@
               "survival": {
                 "value": 0,
                 "name": "DAV20.Survival"
-              }
-            },
-            "knowledges": {
+              },
               "academics": {
                 "value": 0,
                 "name": "DAV20.Academics"
@@ -247,7 +243,8 @@
                 "value": 0,
                 "name": "DAV20.Theology"
               }
-          },
+
+            },
           "healthLevels": {
             "bruised": {
               "injuryTypes": "",
