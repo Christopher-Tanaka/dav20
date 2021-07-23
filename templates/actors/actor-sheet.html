@@ -54,103 +54,105 @@
 
     <h2 class="DAV20.Abilities">{{ localize "DAV20.Attributes" }}</h2>
 
-    <section class="actor-attributes">
+    
 
+    
+    <section class="header-segments">
         <label class="physical-attribute-label"> {{ localize "DAV20.Physical" }} </label>
         <label class="social-attribute-label"> {{ localize "DAV20.Social" }} </label>
         <label class="mental-attribute-label"> {{ localize "DAV20.Mental" }} </label>
+        
+    </section>
 
-        <div class="physical-attribute">
+    <section class="actor-attributes">
+        <!-- <h3> teste1 </h3>
+        <h3> teste2</h3>
+        <h3> teste3 </h3>
+        <h3> teste4 </h3>
+        <h3> teste5 </h3>
+        <h3> teste6 </h3>
+        <h3> teste7 </h3>
+        <h3> teste8 </h3>
+        <h3> teste9 </h3> -->
 
-            <div class="actor-physical-attributes">
-                {{#each data.physical as |attribute key|}}
-                <div class="actor-attribute-row">
+    
+            {{#each data.physical as |attribute key|}}
 
-                    <label for="data.physical.{{key}}.value" class="resource-label vrollable"
-                        data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{localize
-                        attribute.name}}
-                    </label>
+            <label for="data.physical.{{key}}.value" class="resource-label vrollable"
+                    data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{localize
+                    attribute.name}}
+                </label>
 
-                    <label for="data.physical.{{key}}.value" class="resource-row-label"
-                        data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{attribute.value}}
-                    </label>
+                <label for="data.physical.{{key}}.value" class="resource-row-label"
+                    data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{attribute.value}}
+                </label>
 
-                    <div class="resource-value" data-value="{{attribute.value}}"
-                        data-name="data.physical.{{key}}.value">
-                            {{#numLoop 10}}
-                            <span class="resource-value-step" data-index="{{this}}"></span>
-                            {{/numLoop}}
-                    </div>
-                </div>
-
-
-                {{/each}}
-            </div>
-
-        </div>
-
-        <div class="social-attribute">
-
-
-            <div class="actor-social-attributes">
-                {{#each data.social as |attribute key|}}
-                <div class="actor-attribute-row">
-
-
-                    <label for="data.social.{{key}}.value" class="resource-label vrollable"
-                        data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{localize
-                        attribute.name}}
-                    </label>
-
-                    
-                    <label for="data.social.{{key}}.value" class="resource-row-label"
-                        data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{attribute.value}}
-                    </label>
-
-                    <div class="resource-value" data-value="{{attribute.value}}" data-name="data.social.{{key}}.value">
-                    
+                <div class="resource-value" data-value="{{attribute.value}}"
+                    data-name="data.physical.{{key}}.value">
                         {{#numLoop 10}}
                         <span class="resource-value-step" data-index="{{this}}"></span>
                         {{/numLoop}}
-                    
-                    </div>
                 </div>
 
-                {{/each}}
-            </div>
-        </div>
-
-        <div class="mental-attribute">
-
-            <div class="actor-mental-attributes">
-                {{#each data.mental as |attribute key|}}
-                <div class="actor-attribute-row">
-
-                    
-                    <label for="data.mental.{{key}}.value" class="resource-label vrollable"
-                        data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{localize
-                        attribute.name}}
-                    </label>
 
 
-                    <label for="data.mental.{{key}}.value" class="resource-row-label"
-                        data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{attribute.value}}
-                    </label>
+            {{/each}}
+
+            {{#each data.social as |attribute key|}}
+            
 
 
-                    <div class="resource-value" data-value="{{attribute.value}}" data-name="data.mental.{{key}}.value">
-                        
-                        {{#numLoop 10}}
-                        <span class="resource-value-step" data-index="{{this}}"></span>
-                        {{/numLoop}}
-                        
-                    </div>
+                <label for="data.social.{{key}}.value" class="resource-label vrollable"
+                    data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{localize
+                    attribute.name}}
+                </label>
+
+                
+                <label for="data.social.{{key}}.value" class="resource-row-label"
+                    data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{attribute.value}}
+                </label>
+
+                <div class="resource-value" data-value="{{attribute.value}}" data-name="data.social.{{key}}.value">
+                
+                    {{#numLoop 10}}
+                    <span class="resource-value-step" data-index="{{this}}"></span>
+                    {{/numLoop}}
+                
                 </div>
 
-                {{/each}}
-            </div>
+            {{/each}}
 
-        </div>
+
+
+            
+            {{#each data.mental as |attribute key|}}
+            
+
+                
+                <label for="data.mental.{{key}}.value" class="resource-label vrollable"
+                    data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{localize
+                    attribute.name}}
+                </label>
+
+
+                <label for="data.mental.{{key}}.value" class="resource-row-label"
+                    data-roll="{{attribute.value}}" data-label="{{localize attribute.name}}">{{attribute.value}}
+                </label>
+
+
+                <div class="resource-value" data-value="{{attribute.value}}" data-name="data.mental.{{key}}.value">
+                    
+                    {{#numLoop 10}}
+                    <span class="resource-value-step" data-index="{{this}}"></span>
+                    {{/numLoop}}
+                    
+                </div>
+            
+
+            {{/each}}
+            
+
+
 
     </section>
 
@@ -159,19 +161,15 @@
 
 
     <section class="header-segments">
+        <label class="abilities-talents-label talents"> {{ localize "DAV20.Talents" }} </label>
+        <label class="abilities-skills-label skills">{{ localize "DAV20.Skills" }}</label>
+        <label class="abilities-knowledges-label knowledges"> {{ localize "DAV20.Knowledges" }}</label>
         
     </section>
 
     <section class="actor-abilities">
 
-        <label class="abilities-talents-label talents"> {{ localize "DAV20.Talents" }} </label>
-        <label class="abilities-skills-label skills">{{ localize "DAV20.Skills" }}</label>
-        <label class="abilities-knowledges-label knowledges"> {{ localize "DAV20.Knowledges" }}</label>
-
-        <section class="actor-talents">
-
             {{#each data.talents as |talent key|}}
-            <div class="actor-abilitie-row">
                 <label for="data.talents.{{key}}.value" class="resource-label vrollable" data-roll="{{talent.value}}"
                     data-label="{{localize talent.name}}">{{localize talent.name}}
                 </label>
@@ -185,19 +183,12 @@
                     <span class="resource-value-step" data-index="{{this}}"></span>
                     {{/numLoop}}
                 </div>
-                
-            </div>
-
             {{/each}}
 
 
-        </section>
-
-        <section class="actor-skills">
-
             {{#each data.skills as |skill key|}}
 
-            <div class="actor-abilitie-row">
+            
                 <label for="data.skill.{{key}}.value" class="resource-label vrollable" data-roll="{{skill.value}}"
                     data-label="{{localize skill.name}}">{{localize skill.name}}
                 </label>
@@ -211,51 +202,49 @@
                         <span class="resource-value-step" data-index="{{this}}"></span>
                     {{/numLoop}}
                 </div>
-            </div>
+            
                 
             {{/each}}
 
-        </section>
+        
+            {{#each data.knowledges as |knowledge key|}}
 
-        <section class="actor-knowledges">
-            
-                {{#each data.knowledges as |knowledge key|}}
-
-                <div class="actor-abilitie-row">
-                    <label for="data.knowledge.{{key}}.value" class="resource-label vrollable"
-                        data-roll="{{knowledge.value}}" data-label="{{localize knowledge.name}}">{{localize
-                        knowledge.name}}
-                    </label>
+                <label for="data.knowledge.{{key}}.value" class="resource-label vrollable"
+                    data-roll="{{knowledge.value}}" data-label="{{localize knowledge.name}}">{{localize
+                    knowledge.name}}
+                </label>
 
 
-                    <label for="data.knowledge.{{key}}.value" class="resource-row-label" data-roll="{{knowledge.value}}"
-                        data-label="{{localize knowledge.name}}">{{knowledge.value}}
-                    </label>
+                <label for="data.knowledge.{{key}}.value" class="resource-row-label" data-roll="{{knowledge.value}}"
+                    data-label="{{localize knowledge.name}}">{{knowledge.value}}
+                </label>
 
-                    
-                    <div class="resource-value" data-value="{{knowledge.value}}" data-name="data.knowledges.{{key}}.value">
+                
+                <div class="resource-value" data-value="{{knowledge.value}}" data-name="data.knowledges.{{key}}.value">
 
-                        {{#numLoop 10}}
-                            <span class="resource-value-step" data-index="{{this}}"></span>
-                        {{/numLoop}}
-
-                    </div>
+                    {{#numLoop 10}}
+                        <span class="resource-value-step" data-index="{{this}}"></span>
+                    {{/numLoop}}
 
                 </div>
 
-                {{/each}}
+           
 
-        </section>
+            {{/each}}
 
+
+    </section>
+
+    <section class="header-segments">
+        <label class="actor-road-sins-label"> {{ localize "DAV20.RoadSins" }} </label>
+        <label class="actor-road-label"> {{ localize "DAV20.Road" }} </label>
+        <label class="virtues-label">{{ localize "DAV20.Virtues" }}</label>
     </section>
 
 
     <section class="core-footer">
 
-        <label class="actor-road-sins-label"> {{ localize "DAV20.RoadSins" }} </label>
-        <label class="actor-road-label"> {{ localize "DAV20.Road" }} </label>
-        <label class="virtues-label">{{ localize "DAV20.Virtues" }}</label>
-
+        
 
         <label class="actor-willpower-label"> {{ localize "DAV20.Willpower" }} </label>
         <label class="actor-bloodpool-label"> {{ localize "DAV20.BloodPool" }} </label>
