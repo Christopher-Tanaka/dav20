@@ -53,6 +53,15 @@
   outline: none !important;
 }
 
+.dav20 .abilityCheck:hover,
+.dav20 .abilityCheck:focus,
+.dav20 .attributeCheck:hover,
+.dav20 .attributeCheck:focus {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
+
 .dav20 .profile-img {
   min-width: 100px;
   min-height: 100px;

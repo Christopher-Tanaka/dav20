@@ -59,6 +59,8 @@ export class VampireSheet extends ActorSheet {
     html.find('.resource-value-step').click(this._onDotCounterChange.bind(this))
     html.find('.resource-health-step').click(this._onHealthCounterClick.bind(this))
     html.find('.resource-counter-step').click(this._onSquareCounterClick.bind(this))
+    // Rollable Vampire abilities.
+    html.find('.abilityCheck').click(this._onVampireRollDialog.bind(this))
     //html.find('.resource-value-empty').click(this._onDotCounterEmpty.bind(this))
 
     if (!this.options.editable) {
@@ -239,6 +241,156 @@ export class VampireSheet extends ActorSheet {
       })
     })
 
+  }
+
+  /**
+     * Handle clickable Vampire rolls.
+     * @param {Event} event   The originating click event
+     * @private
+     */
+  _onVampireRollDialog (event) {
+    event.preventDefault()
+    const element = event.currentTarget
+    const dataset = element.dataset
+    let options = ''
+
+    for (const [key, value] of Object.entries(this.actor.data.data.attributes)) {
+      options = options.concat(`<option value="${key}">${game.i18n.localize(value.name)}</option>`)
+    }
+
+    const template = `
+      <form>
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.SelectAbility')}</label>
+              <select id="abilitySelect">${options}</select>
+          </div>  
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Modifier')}</label>
+              <input type="text" id="inputMod" value="0">
+          </div>  
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Difficulty')}</label>
+              <input type="text" min="0" id="inputDif" value="6">
+          </div>
+      </form>`
+
+    let buttons = {}
+    buttons = {
+      draw: {
+        icon: '<i class="fas fa-check"></i>',
+        label: game.i18n.localize('VTM5E.Roll'),
+        callback: async (html) => {
+          const ability = html.find('#abilitySelect')[0].value
+          const modifier = parseInt(html.find('#inputMod')[0].value || 0)
+          const difficulty = parseInt(html.find('#inputDif')[0].value || 0)
+          const abilityVal = this.actor.data.data.attributes[ability].value
+          const abilityName = game.i18n.localize(this.actor.data.data.attributes[ability].name)
+          const numDice = abilityVal + parseInt(dataset.roll) + modifier
+          this._abilityCheck(numDice, this.actor, `${dataset.label} + ${abilityName}`, difficulty, true)
+          // this._vampireRoll(numDice, this.actor, `${dataset.label} + ${abilityName}`, difficulty)
+        }
+      },
+      cancel: {
+        icon: '<i class="fas fa-times"></i>',
+        label: game.i18n.localize('VTM5E.Cancel')
+      }
+    }
+
+    new Dialog({
+      title: game.i18n.localize('VTM5E.Rolling') + ` ${dataset.label}...`,
+      content: template,
+      buttons: buttons,
+      default: 'draw'
+    }).render(true)
+  }
+
+  _abilityCheck (numDice, actor, label = '', difficulty = 6, specialties = false) {
+    const dice = numDice;
+    const roll = new Roll(dice + 'd10');
+    const rollResult = roll.evaluate();
+    const parsedRoll = this._parseRollResult(rollResult, difficulty);
+
+    rollResult._total = parsedRoll["Total"];
+    
+    rollResult.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: actor }),
+      flavor: label
+    })
+  }
+
+  _parseRollResult(rollResult, difficulty) {
+    let success = 0
+    let criticalSuccess = 0
+    let fail = 0
+    let criticalFail = 0
+
+    rollResult.terms[0].results.forEach((dice) => {
+      if (dice.result === 10 && specialties)
+        criticalSuccess+=2;
+      else if (dice.result === 1)
+        criticalFail++;
+      else if (dice.result < difficulty)
+        fail++;
+      else
+        success++;
+    })
+
+    criticalSuccess-=criticalFail;
+
+    if (criticalSuccess < 0) {
+      success -= criticalFail;      
+    }
+
+    return {
+      "Critical Success": criticalFail,
+      "Success": success,
+      "Failed": fail,
+      "Critical Fail": criticalFail,
+      "Total": (success + criticalSuccess)
+    }
+  }
+
+  _rollDice (numDice, actor, label = '', difficulty = 6) {
+    
+    const dice = numDice;
+    const roll = new Roll(dice + 'd10');
+    const rollResult = roll.evaluate();
+
+    let difficultyResult = '<span></span>'
+    let success = 0
+    let hungerSuccess = 0
+    let critSuccess = 0
+    let hungerCritSuccess = 0
+    let fail = 0
+
+    rollResult.terms[0].results.forEach((dice) => {
+      if (dice.success) {
+        if (dice.result === 10) {
+          critSuccess++
+        } else {
+          success++
+        }
+      } else {
+        fail++
+      }
+    })
+
+    let totalCritSuccess = 0
+    totalCritSuccess = Math.floor((critSuccess + hungerCritSuccess) / 2)
+    const totalSuccess = (totalCritSuccess * 2) + success + hungerSuccess + critSuccess + hungerCritSuccess
+    let successRoll = false
+    if (difficulty !== 0) {
+      successRoll = totalSuccess >= difficulty
+      difficultyResult = `( <span class="danger">${game.i18n.localize('VTM5E.Fail')}</span> )`
+      if (successRoll) {
+        difficultyResult = `( <span class="success">${game.i18n.localize('VTM5E.Success')}</span> )`
+      }
+    }
+
+    rollResult.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: actor }),
+      flavor: label
+    })
   }
 
    // There's gotta be a better way to do this but for the life of me I can't figure it out

@@ -55,8 +55,6 @@
     <h2 class="DAV20.Abilities">{{ localize "DAV20.Attributes" }}</h2>
 
 
-
-
     <section class="header-segments">
         <label class="common-label"> {{ localize "DAV20.Physical" }} </label>
         <label class="common-label"> {{ localize "DAV20.Social" }} </label>
@@ -67,81 +65,25 @@
     <section class="actor-attributes">
 
 
-        {{#each data.physical as |attribute key|}}
+        {{#each data.attributes as |attribute key|}}
 
-        <label for="data.physical.{{key}}.value" class="common-label vrollable" data-roll="{{attribute.value}}"
-            data-label="{{localize attribute.name}}">{{localize
-            attribute.name}}
-        </label>
+            <label for="data.attributes.{{key}}.value" class="common-label attributeCheck" data-roll="{{attribute.value}}"
+                data-label="{{localize attribute.name}}">{{localize
+                attribute.name}}
+            </label>
 
-        <label for="data.physical.{{key}}.value" class="common-label" data-roll="{{attribute.value}}"
-            data-label="{{localize attribute.name}}">{{attribute.value}}
-        </label>
+            <label for="data.attributes.{{key}}.value" class="common-label attributeCheck" data-roll="{{attribute.value}}"
+                data-label="{{localize attribute.name}}">{{attribute.value}}
+            </label>
 
-        <div class="resource-value" data-value="{{attribute.value}}" data-name="data.physical.{{key}}.value">
-            {{#numLoop 10}}
-            <span class="resource-value-step" data-index="{{this}}"></span>
-            {{/numLoop}}
-        </div>
-
-
-
-        {{/each}}
-
-        {{#each data.social as |attribute key|}}
-
-
-
-        <label for="data.social.{{key}}.value" class="resource-label vrollable" data-roll="{{attribute.value}}"
-            data-label="{{localize attribute.name}}">{{localize
-            attribute.name}}
-        </label>
-
-
-        <label for="data.social.{{key}}.value" class="resource-row-label" data-roll="{{attribute.value}}"
-            data-label="{{localize attribute.name}}">{{attribute.value}}
-        </label>
-
-        <div class="resource-value" data-value="{{attribute.value}}" data-name="data.social.{{key}}.value">
-
-            {{#numLoop 10}}
-            <span class="resource-value-step" data-index="{{this}}"></span>
-            {{/numLoop}}
-
-        </div>
-
-        {{/each}}
-
-
-
-
-        {{#each data.mental as |attribute key|}}
-
-
-
-        <label for="data.mental.{{key}}.value" class="resource-label vrollable" data-roll="{{attribute.value}}"
-            data-label="{{localize attribute.name}}">{{localize
-            attribute.name}}
-        </label>
-
-
-        <label for="data.mental.{{key}}.value" class="resource-row-label" data-roll="{{attribute.value}}"
-            data-label="{{localize attribute.name}}">{{attribute.value}}
-        </label>
-
-
-        <div class="resource-value" data-value="{{attribute.value}}" data-name="data.mental.{{key}}.value">
-
-            {{#numLoop 10}}
-            <span class="resource-value-step" data-index="{{this}}"></span>
-            {{/numLoop}}
-
-        </div>
+            <div class="resource-value" data-value="{{attribute.value}}" data-name="data.attributes.{{key}}.value">
+                {{#numLoop 10}}
+                <span class="resource-value-step" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
 
 
         {{/each}}
-
-
 
 
     </section>
@@ -159,11 +101,11 @@
 
     <section class="actor-abilities">
         {{#each data.abilities as |ability key|}}
-        <label for="data.abilities.{{key}}.value" class="common-label vrollable" data-roll="{{ability.value}}"
+        <label for="data.abilities.{{key}}.value" class="common-label abilityCheck" data-roll="{{ability.value}}"
             data-label="{{localize ability.name}}">{{localize ability.name}}
         </label>
 
-        <label for="data.abilities.{{key}}.value" class="common-label" data-roll="{{ability.value}}"
+        <label for="data.abilities.{{key}}.value" class="common-label abilityCheck" data-roll="{{ability.value}}"
             data-label="{{localize ability.name}}">{{ability.value}}
         </label>
 

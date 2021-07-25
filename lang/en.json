@@ -95,6 +95,10 @@
     "DAV20.BloodPool": "Blood Pool",
     "DAV20.Weakness": "Weakness",
 
+    "DAV20.SelectAbility": "Select Ability",
+    "DAV20.Modifier": "Modifier",
+    "DAV20.Difficulty": "Difficulty",
+
     "Weapon.Lable": "Weapon",
     "Weapon.Concealment": "Concealment",
     "WeaponConcealment.Pouch": "Pouch (P)",
