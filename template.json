@@ -307,7 +307,8 @@
     "Item":{
         "types": [
             "weapon",
-            "vehicle"
+            "vehicle",
+            "power"
         ],
         "templates" : {
             "itemDescription": {
@@ -328,4 +329,4 @@
             "accel": "accel"
         }
     }
-}
+} 

@@ -29,13 +29,28 @@ DAV20.SelfControlInstinct = {
     Instinct: "DAV20.Instinct"
 };
 
+DAV20.Attributes = {
+    Strength: "DAV20.Strength",
+    Charisma: "DAV20.Charisma",
+    Perception: "DAV20.Perception",
+
+    Dexterity: "DAV20.Dexterity",
+    Manipulation: "DAV20.Manipulation",
+    Intelligence: "DAV20.Intelligence",
+
+    Stamina: "DAV20.Stamina",
+    Appearence: "DAV20.Appearence",
+    Wits: "DAV20.Wits"
+}
+
 DAV20.abilitiesAvailable = {
+    Academics: "DAV20.Academics",
     Alertness: "DAV20.Alertness",
     AnimalKen: "DAV20.AnimalKen",
-    Academics: "DAV20.Academics",
-    Athletics: "DAV20.Athletics",
+    Athletics:"DAV20.Athletics",
     Archery: "DAV20.Archery",
     Enigmas: "DAV20.Enigmas",
+    Awareness: "DAV20.Awareness",
     Commerce: "DAV20.Commerce",
     HearthWisdom: "DAV20.HearthWisdom",
     Brawl: "DAV20.Brawl",

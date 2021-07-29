@@ -1,4 +1,14 @@
 {
+
+    
+    "DAV20.Rolling": "Rolling",
+    "DAV20.Roll": "Roll",
+    "DAV20.Cancel": "Cancel",
+    "DAV20.Dice1": "Dice 1",
+    "DAV20.Dice2": "Dice 2",
+    "DAV20.Bloodpoints": "Bloodpoints",
+    "DAV20.Animalism": "Animalism",
+
     "DAV20.Name": "Name",
     "DAV20.Nature": "Nature",
     "DAV20.Clan": "Clan",
@@ -68,6 +78,9 @@
 
     "DAV20.Advantages": "Advantages",
     "DAV20.Disciplines": "Disciplines",
+    "DAV20.Discipline": "Discipline",
+    "DAV20.Level": "Level",
+    "DAV20.Description": "Description",
     "DAV20.Rituals": "Rituals",
     "DAV20.Backgrounds": "Backgrounds",
     "DAV20.Virtues": "Virtues",

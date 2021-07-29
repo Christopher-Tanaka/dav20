@@ -1,0 +1,209 @@
+<div class="tab abilities" data-group="primary" data-tab="abilities">
+    <h2 class="DAV20.Abilities">{{ localize "DAV20.Attributes" }}</h2>
+
+
+    <section class="header-segments">
+        <label class="common-label"> {{ localize "DAV20.Physical" }} </label>
+        <label class="common-label"> {{ localize "DAV20.Social" }} </label>
+        <label class="common-label"> {{ localize "DAV20.Mental" }} </label>
+
+    </section>
+
+    <section class="actor-attributes">
+
+
+        {{#each data.attributes as |attribute key|}}
+
+        <label for="data.attributes.{{key}}.value" class="common-label attributeCheck" data-roll="{{attribute.value}}"
+            data-label="{{localize attribute.name}}">{{localize
+            attribute.name}}
+        </label>
+
+        <label for="data.attributes.{{key}}.value" class="common-label attributeCheck" data-roll="{{attribute.value}}"
+            data-label="{{localize attribute.name}}">{{attribute.value}}
+        </label>
+
+        <div class="resource-value" data-value="{{attribute.value}}" data-name="data.attributes.{{key}}.value">
+            {{#numLoop 10}}
+            <span class="resource-value-step" data-index="{{this}}"></span>
+            {{/numLoop}}
+        </div>
+
+        {{/each}}
+
+
+    </section>
+
+
+    <h2 class="DAV20.Abilities">{{ localize "DAV20.Abilities" }}</h2>
+
+
+    <section class="header-segments">
+        <label class="common-label talents"> {{ localize "DAV20.Talents" }} </label>
+        <label class="common-label skills">{{ localize "DAV20.Skills" }}</label>
+        <label class="common-label knowledges"> {{ localize "DAV20.Knowledges" }}</label>
+
+    </section>
+
+    <section class="actor-abilities">
+        {{#each data.abilities as |ability key|}}
+        <label for="data.abilities.{{key}}.value" class="common-label abilityCheck" data-roll="{{ability.value}}"
+            data-label="{{localize ability.name}}">{{localize ability.name}}
+        </label>
+
+        <label for="data.abilities.{{key}}.value" class="common-label abilityCheck" data-roll="{{ability.value}}"
+            data-label="{{localize ability.name}}">{{ability.value}}
+        </label>
+
+        <div class="resource-value" data-value="{{ability.value}}" data-name="data.abilities.{{key}}.value">
+            {{#numLoop 10}}
+            <span class="resource-value-step" data-index="{{this}}"></span>
+            {{/numLoop}}
+        </div>
+        {{/each}}
+    </section>
+
+    <section class="header-segments">
+        <label class="actor-road-sins-label"> {{ localize "DAV20.RoadSins" }} </label>
+        <label class="actor-road-label"> {{ localize "DAV20.Road" }} </label>
+        <label class="virtues-label">{{ localize "DAV20.Virtues" }}</label>
+    </section>
+
+
+    <section class="core-footer">
+
+
+        <label class="actor-willpower-label"> {{ localize "DAV20.Willpower" }} </label>
+        <label class="actor-bloodpool-label"> {{ localize "DAV20.BloodPool" }} </label>
+        <label class="actor-health-label"> {{ localize "DAV20.Health" }} </label>
+
+
+        {{#each data.sins as |sin key|}}
+
+        <label for="sin.{{key}}" class="sin-level-{{sin.name}}" data-roll="sin.{{key}}"
+            data-label="{{localize sin.name}}">{{localize sin.name}}
+        </label>
+
+        <input class="sin-level-value-{{sin.name}}" name="data.sins.{{key}}.value" type="text" value="{{sin.value}}"
+            placeholder="" />
+
+        {{/each}}
+
+
+        <input class="actor-road" name="data.road.name" type="text" value="{{ data.road.name }}" placeholder="" />
+        <div class="road-value">
+
+            <div class="resource-value" data-value="{{data.road.value}}" data-name="data.road.value">
+                {{#numLoop 10}}
+                <span class="resource-value-step" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
+
+        </div>
+
+
+        <div class="actor-willpower">
+            <div class="resource-value" data-value="{{data.willpower.value}}" id="data.willpower.value">
+                {{#numLoop 10}}
+                <span class="resource-value-step" data-index="{{this}}" data-level="{{data.willpower.value}}"></span>
+                {{/numLoop}}
+            </div>
+        </div>
+
+        <div class="actor-willpowerTemp">
+            <div class="resource-counter" data-value="{{data.willpower.tempValue}}" id="data.willpower.tempValue">
+                {{#numLoop 10}}
+                <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
+                {{/numLoop}}
+            </div>
+        </div>
+
+        <div class="blood-pool">
+            <div class="resource-content">
+                <div class="resource-counter" data-value="{{data.bloodPool.value}}" id="data.bloodPool.value">
+                    {{#numLoop 50}}
+                    <span class="resource-counter-step" data-index="{{this}}" data-state=""></span>
+                    {{/numLoop}}
+                </div>
+            </div>
+        </div>
+
+        <select name="data.virtues.conscienteConviction.option" class="conscience-conviction">
+            {{#select data.virtues.conscienteConviction.option}}
+            <option value=""></option>
+            {{#each config.ConscienceConviction as |name type|}}
+            <option value="{{type}}">{{localize name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+
+        <div class="conscience-conviction-value">
+            <div class="resource-value" data-value="{{data.virtues.conscienteConviction.value}}"
+                data-name="data.virtues.conscienteConviction.value">
+                {{#numLoop 10}}
+                <span class="resource-value-step" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
+
+        </div>
+
+
+        <select name="data.virtues.selfControlInstinct.option" class="self-control-instinct">
+            {{#select data.virtues.selfControlInstinct.option}}
+            <option value=""></option>
+            {{#each config.SelfControlInstinct as |name type|}}
+            <option value="{{type}}">{{localize name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+
+        <div class="self-control-instinct-value">
+
+            <div class="resource-value" data-value="{{data.virtues.selfControlInstinct.value}}"
+                data-name="data.virtues.selfControlInstinct.value">
+
+                {{#numLoop 10}}
+                <span class="resource-value-step" data-index="{{this}}"></span>
+                {{/numLoop}}
+
+            </div>
+
+        </div>
+
+        <label class="actor-courage-label"> {{ localize "DAV20.Courage" }} </label>
+
+        <div class="actor-courage-value">
+
+            <div class="resource-value" data-value="{{data.virtues.corage.value}}"
+                data-name="data.virtues.corage.value">
+
+                {{#numLoop 10}}
+                <span class="resource-value-step" data-index="{{this}}"></span>
+                {{/numLoop}}
+
+            </div>
+        </div>
+
+        <section class="actor-health">
+
+            {{#each data.healthLevels as |health key|}}
+            <div class="health-row">
+                <label for="data.healthLevels.{{key}}.injuryTypes" class="health-row-label {{ health.name}}-label"
+                    data-label="{{localize health.name}}">{{localize health.name}}</label>
+
+                <label for="data.healthLevels.{{key}}.penalty"
+                    class="health-penalty-label {{health.name}}-penalty-label"
+                    data-label="{{health.penalty}}">{{health.penalty}} </label>
+
+                <span class="resource-health-step" data-level="{{health.level}}" data-state="{{health.injuryTypes}}"
+                    id="data.healthLevels.{{key}}.injuryTypes"></span>
+
+            </div>
+
+            {{/each}}
+
+
+    </section>
+
+
+</div>

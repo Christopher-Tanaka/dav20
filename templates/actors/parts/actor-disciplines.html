@@ -1,0 +1,56 @@
+<section class="actor-disciplines-tab">
+
+    <div class="discipline-tree">
+
+        <ol>
+        {{#each disciplines as |discipline|}}
+
+        <li>
+            <h3>{{discipline.label}}</h3>
+        </li>
+
+
+
+        <ol>
+
+            {{#each discipline.powers as |power i|}}
+            <li>
+                <h4>{{power.name}}</h4>
+            </li>
+
+            {{/each}}
+
+
+        </ol>
+
+
+        {{/each}}
+
+        </ol>
+
+
+        
+
+        
+
+        {{#keys disciplines}}
+            <label>{{discipline}}</label>
+
+
+            {{#values ../discipline discipline}}
+                <label>teste</label>
+            {{/values}}
+
+            
+
+        {{/keys}}
+
+        <div class="discipline-powers">
+
+
+        </div>
+
+    </div>
+    
+
+</section>

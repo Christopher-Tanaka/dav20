@@ -9,6 +9,8 @@ import { VampireActor } from './module/actors/vampireActor.js';
 import { ItemSheetDav20 } from './module/items/itemSheet.js';
 import { VampireSheet } from './module/actors/sheets/vampireSheet.js';
 
+import { preloadHandlebarsTemplates } from "./module/templates.js";
+
 Hooks.once("init", function() {
     console.log("dav20 | initialising Dark Ages Vampite 20th Anniversay System");
 
@@ -34,7 +36,8 @@ Hooks.once("init", function() {
 
     Actors.unregisterSheet('core', ActorSheet);
     Actors.registerSheet('dav20', VampireSheet, { makeDefault: true, label: "DAV20.SheetClassActor" });
-    
+    // Preload Handlebars Templates
+    return preloadHandlebarsTemplates();
 });
 
 function rollItemMacro (itemName) {
@@ -57,6 +60,15 @@ function rollItemMacro (itemName) {
     }
 
     return ret
+  });
+
+ 
+
+  Handlebars.registerHelper("values", function(context, options) {
+    const map = new Map(context);
+    var ret = map.get(key);
+  
+    return ret;
   });
 
   Handlebars.registerHelper('fromUntil', function (start, end, increment, options) {

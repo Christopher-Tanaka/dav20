@@ -3,51 +3,94 @@
  * Extend the basic ActorSheet
  * @extends {ActorSheet}
  */
+
+Handlebars.registerHelper("keys", function (context, options) {
+  var ret = [];
+
+  return ret;
+});
+
+
 export class VampireSheet extends ActorSheet {
 
-    constructor(...args) {
-        super(...args);
+  constructor(...args) {
+    super(...args);
+  }
+
+
+
+  /** @inheritdoc */
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      width: 1024,
+      height: 700,
+      classes: ["dav20", "sheet", "actor"],
+      resizable: true,
+      popOut: true,
+      scrollY: [".tab.details"],
+      tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description" }]
+    });
+  }
+
+  /** @override */
+  get template() {
+    return 'systems/dav20/templates/actors/actor-sheet.html'
+  }
+
+  /** @override */
+  getData() {
+    const data = super.getData();
+    const actorData = data.data;
+    data.config = CONFIG.DAV20;
+
+    let powers = data.items.filter(function (item) { return item.type == "power" })
+
+    const disciplines = this._formatDisciplinesAndPowers(data, powers)
+
+    data.disciplines = disciplines;
+
+    data.actor = actorData;
+    data.data = actorData.data;
+
+    // Owned Items
+    data.items = actorData.items;
+    for (let i of data.items) {
+      const item = this.actor.items.get(i._id);
+      i.labels = item.labels;
     }
 
-    /** @inheritdoc */
-	static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-        width: 1024,
-        height: 700,
-        classes: ["dav20", "sheet", "actor"],
-        resizable: true,
-        popOut: true,
-        scrollY: [".tab.details"],
-        tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
-      });
-    }
+    return data;
+  }
 
-    /** @override */
-    get template() {
-        return 'systems/dav20/templates/actors/actor-sheet.html'
-    }
+  _formatDisciplinesAndPowers(data, powers) {
+    const disciplines = new Map();
 
-    /** @override */
-    getData() {
-        const data = super.getData();
-        const actorData = data.data;
-        data.config = CONFIG.DAV20;
+    powers.forEach(power => {
+      const key = power.data.discipline.disciplineTree;
 
-        data.actor = actorData;
-        data.data = actorData.data;
+      if (disciplines.has(key)) {
+        disciplines.get(key).powers.push(power);
+      } else {
+        const value = {
+          level: 1,
+          label: power.data.discipline.disciplineTree,
+          powers: []
+        };
 
-        // Owned Items
-        data.items = actorData.items;
-        for ( let i of data.items ) {
-        const item = this.actor.items.get(i._id);
-        i.labels = item.labels;
-        }
+        value.powers.push(power);
+        disciplines.set(key, value);
+      }
 
-        return data;
-    }
+    });
 
-    
-  activateListeners (html) {
+    // Sort the spellbook by section level
+    const sorted = Object.fromEntries(disciplines);
+
+    return sorted;
+  }
+
+
+  activateListeners(html) {
     console.log("dav20 | activating listeners...");
 
     super.activateListeners(html)
@@ -55,7 +98,7 @@ export class VampireSheet extends ActorSheet {
     this._setupDotCounters(html)
     this._setupResourceCounters(html)
     this._setupHealthCounters(html)
-    
+
     html.find('.resource-value-step').click(this._onDotCounterChange.bind(this))
     html.find('.resource-health-step').click(this._onHealthCounterClick.bind(this))
     html.find('.resource-counter-step').click(this._onSquareCounterClick.bind(this))
@@ -64,14 +107,14 @@ export class VampireSheet extends ActorSheet {
     //html.find('.resource-value-empty').click(this._onDotCounterEmpty.bind(this))
 
     if (!this.options.editable) {
-        console.log("dav20 | sheet is not editable");
-        return
+      console.log("dav20 | sheet is not editable");
+      return
     }
 
     console.log("dav20 | listener activated");
   }
 
-  _onDotCounterEmpty (event) {
+  _onDotCounterEmpty(event) {
     const actorData = this.actor.data.toObject(false);
 
     console.log("dav20 | _onDotCounterEmpty");
@@ -87,11 +130,11 @@ export class VampireSheet extends ActorSheet {
     this._assignToActorField(fields, 0)
   }
 
-  _onDotCounterChange (event) {
+  _onDotCounterChange(event) {
     event.preventDefault();
 
     console.log("dav20 | _onDotCounterChange");
-  
+
     const element = event.currentTarget
     const dataset = element.dataset
     const index = Number(dataset.index)
@@ -99,7 +142,7 @@ export class VampireSheet extends ActorSheet {
     const fieldStrings = parent[0].dataset.name
     const steps = parent.find('.resource-value-step')
     if (index < 0 || index > steps.length) {
-        console.log("dav20 |  Invalid index")
+      console.log("dav20 |  Invalid index")
       return
     }
 
@@ -113,7 +156,7 @@ export class VampireSheet extends ActorSheet {
 
     let currentValue = Number(parent[0].dataset.value);
     let newValue = 0;
-    if(index == 0 && currentValue == 1)
+    if (index == 0 && currentValue == 1)
       newValue = index;
     else
       newValue = index + 1;
@@ -121,7 +164,7 @@ export class VampireSheet extends ActorSheet {
     return this.actor.update({ [fieldStrings]: newValue })
   }
 
-  _setupDotCounters (html) {
+  _setupDotCounters(html) {
     console.log("_setupDotCounters")
 
     html.find('.resource-value').each(function () {
@@ -143,7 +186,7 @@ export class VampireSheet extends ActorSheet {
 
   }
 
-  _onSquareCounterClick (event) {
+  _onSquareCounterClick(event) {
     event.preventDefault();
 
     console.log("dav20 | _onDotCounterChange");
@@ -166,10 +209,10 @@ export class VampireSheet extends ActorSheet {
         $(this).addClass('active')
       }
     })
-    
+
     let currentValue = Number(parent[0].dataset.value);
     let newValue = 0;
-    if(index == 0 && currentValue == 1)
+    if (index == 0 && currentValue == 1)
       newValue = index;
     else
       newValue = index + 1
@@ -177,7 +220,7 @@ export class VampireSheet extends ActorSheet {
     return this.actor.update({ [fieldStrings]: newValue })
   }
 
-  _setupResourceCounters (html) {
+  _setupResourceCounters(html) {
     html.find('.resource-counter').each(function () {
       const value = Number(this.dataset.value)
       $(this).find('.resource-counter-step').each(function (i) {
@@ -197,18 +240,18 @@ export class VampireSheet extends ActorSheet {
 
   }
 
-  _onHealthCounterClick (event) {
+  _onHealthCounterClick(event) {
     event.preventDefault();
 
     console.log("dav20 | _onDotCounterChange");
-    
+
     const element = event.currentTarget;
     const dataset = element.dataset;
     const key = element.id;
 
     let currentState = dataset.state;
     let newState = ""
-    
+
     switch (currentState) {
       case "": newState = "-"; break;
       case "-": newState = "/"; break;
@@ -218,7 +261,7 @@ export class VampireSheet extends ActorSheet {
       default: newState = "-"
     }
 
-    if(key == "") {
+    if (key == "") {
       console.log("dav20 | empty key to update health")
       return
     }
@@ -226,7 +269,7 @@ export class VampireSheet extends ActorSheet {
     return this.actor.update({ [element.id]: newState })
   }
 
-  _setupHealthCounters (html) {
+  _setupHealthCounters(html) {
     html.find('.resource-health').each(function () {
 
       console.log("dav20 | _setupHealthCounters")
@@ -248,7 +291,7 @@ export class VampireSheet extends ActorSheet {
      * @param {Event} event   The originating click event
      * @private
      */
-  _onVampireRollDialog (event) {
+  _onVampireRollDialog(event) {
     event.preventDefault()
     const element = event.currentTarget
     const dataset = element.dataset
@@ -304,14 +347,14 @@ export class VampireSheet extends ActorSheet {
     }).render(true)
   }
 
-  _abilityCheck (numDice, actor, label = '', difficulty = 6, specialties = false) {
+  _abilityCheck(numDice, actor, label = '', difficulty = 6, specialties = false) {
     const dice = numDice;
     const roll = new Roll(dice + 'd10');
     const rollResult = roll.evaluate();
     const parsedRoll = this._parseRollResult(rollResult, difficulty);
 
     rollResult._total = parsedRoll["Total"];
-    
+
     rollResult.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: actor }),
       flavor: label
@@ -326,7 +369,7 @@ export class VampireSheet extends ActorSheet {
 
     rollResult.terms[0].results.forEach((dice) => {
       if (dice.result === 10 && specialties)
-        criticalSuccess+=2;
+        criticalSuccess += 2;
       else if (dice.result === 1)
         criticalFail++;
       else if (dice.result < difficulty)
@@ -335,10 +378,10 @@ export class VampireSheet extends ActorSheet {
         success++;
     })
 
-    criticalSuccess-=criticalFail;
+    criticalSuccess -= criticalFail;
 
     if (criticalSuccess < 0) {
-      success -= criticalFail;      
+      success -= criticalFail;
     }
 
     return {
@@ -350,8 +393,8 @@ export class VampireSheet extends ActorSheet {
     }
   }
 
-  _rollDice (numDice, actor, label = '', difficulty = 6) {
-    
+  _rollDice(numDice, actor, label = '', difficulty = 6) {
+
     const dice = numDice;
     const roll = new Roll(dice + 'd10');
     const rollResult = roll.evaluate();
@@ -393,8 +436,8 @@ export class VampireSheet extends ActorSheet {
     })
   }
 
-   // There's gotta be a better way to do this but for the life of me I can't figure it out
-   _assignToActorField (fields, value) {
+  // There's gotta be a better way to do this but for the life of me I can't figure it out
+  _assignToActorField(fields, value) {
     const actorData = duplicate(this.actor)
     // update actor owned items
     if (fields.length === 2 && fields[0] === 'items') {
