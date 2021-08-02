@@ -12,12 +12,15 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
   text-align: center;
-  border-bottom: 2px solid #300b0b;
-  margin-top: 15px;
-  opacity: .5;
+  border-bottom: 0px solid #300b0b;
+  margin-top: 5px;
+  color: white;
+
+  background: rgb(238,229,229);
+background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, rgba(238,229,229,1) 100%);
 }
 
 .dav20 input[type="text"],
@@ -62,6 +65,16 @@
   cursor: pointer;
 }
 
+.dav20 .sheet-body {
+  width: 100%;
+  height: 70%;
+}
+
+.dav20 .tab {
+  width: 100%;
+  height: 100%;
+}
+
 .dav20 .profile-img {
   min-width: 100px;
   min-height: 100px;
@@ -84,9 +97,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 20px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -105,7 +118,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -116,7 +129,7 @@
   justify-content: center;
   border-bottom: 2px solid #782e22;
   border-top: 2px solid #782e22;
-  font-size: 20px;
+  font-size: 12px;
 }
 
 /* .dav20 .actor-abilities-header {
@@ -132,14 +145,14 @@
 .dav20 .actor-attributes {
   display: grid;
   grid-template-columns: .7fr .2fr 1fr .7fr .2fr 1fr .7fr .2fr 1fr;
-  grid-auto-rows: minmax(30px, auto);
+  grid-auto-rows: minmax(20px, auto);
   align-items: center;
 }
 
 .dav20 .actor-abilities {
   display: grid;
   grid-template-columns: .7fr .2fr 1fr .7fr .2fr 1fr .7fr .2fr 1fr;
-  grid-auto-rows: minmax(30px, auto);
+  grid-auto-rows: minmax(20px, auto);
 }
 
 /* Resource boxes CSS */
@@ -448,7 +461,7 @@
 
 .dav20 .actor-courage-label {
   grid-area: courageLabel;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
   align-self: center;
 }
@@ -489,7 +502,7 @@
   grid-area: willPowerLabel;
   align-self: center;
   justify-self: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -507,7 +520,7 @@
 
 .dav20 .actor-bloodpool-label {
   grid-area: bloodPoolLabel;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
   align-self: center;
 justify-self: center;
@@ -529,7 +542,7 @@ justify-self: center;
 .dav20 .actor-health-label {
   grid-area: healthLabel;
   align-self: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
   margin-right: 25%;
 justify-self: center;
@@ -558,6 +571,39 @@ justify-self: center;
 
 .dav20 .resource-health-step {
   max-width: 14px;
+}
+
+/**
+Character Disciplines
+**/
+
+/* .dav20 .disciplines-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+*/
+
+.dav20 .discipline-header {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+} 
+
+.discipline-title {
+  font-size: 15px;
+}
+
+.dav20 .power-row {
+  display: grid;
+  justify-content: center;
+  column-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: minmax(30px, auto);
 }
 
 /* 
@@ -590,7 +636,30 @@ Discipline item sheet css
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-auto-rows: minmax(30px, auto);
   justify-items: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
 
+}
+
+.actor-sire {
+  height: 100%;
+  width: 100%;
+  max-height: 300px;
+}
+
+.dav20 .richtext-editor {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #7a7971;
+  max-height: 300px;
+}
+
+.dav20 .richtext-editor .editor {
+  height: 100%;
+  width: 100%;
+}
+
+
+.item-sheet {
+  height: 100%;
 }

@@ -1,0 +1,88 @@
+<section class="tab actor-background-tab">
+
+    <section class="actor-background">
+        {{#each data.backgrounds as |background key|}}
+        <label for="data.abilities.{{key}}.value" class="common-label"
+            data-label="{{localize background.name}}">{{localize background.name}}
+        </label>
+
+        <div class="resource-value" data-value="{{background.value}}" data-name="data.abilities.{{key}}.value">
+            {{#numLoop 5}}
+            <span class="resource-value-step" data-index="{{this}}"></span>
+            {{/numLoop}}
+        </div>
+        {{/each}}
+    </section>
+
+    <section class="actor-merits">
+
+        <ol class="merits-list">
+        
+            {{#each merits as |item key|}}
+            <div class="flaw-row flaw-header">
+                <h3>{{ localize 'Name' }}</h3>
+                <h3>{{ localize "DAV20.Type" }}</h3>
+                <h3>{{ localize "DAV20.Cost" }}</h3>
+            </div>
+
+            <li class="flaw-row" data-item-id="{{item._id}}"> 
+
+                <h4>{{ item.name }}</h4>
+                <h4>{{ item.data.meritsAndFlaws.Type }}</h4>
+                <h4>{{ item.data.meritsAndFlaws.Cost }}</h4>
+                <a class="item-edit" title="{{localize 'DAV20.Edit'}}">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="item-delete" title="{{localize 'DAV20.Delete'}}">
+                    <i class="fas fa-trash"></i>
+                </a>
+
+            </li>
+
+            {{/each}}
+
+        </ol>
+
+    </section>
+
+    <section class="actor-flaws">
+
+        <ol class="flaws-list">
+        
+            {{#each flaws as |item key|}}
+            <div class="flaw-row flaw-header">
+                <h3>{{ localize 'Name' }}</h3>
+                <h3>{{ localize "DAV20.Type" }}</h3>
+                <h3>{{ localize "DAV20.Cost" }}</h3>
+            </div>
+
+            <li class="flaw-row" data-item-id="{{item._id}}"> 
+
+                <h4>{{ item.name }}</h4>
+                <h4>{{ item.data.meritsAndFlaws.Type }}</h4>
+                <h4>{{ item.data.meritsAndFlaws.Cost }}</h4>
+                <a class="item-edit" title="{{localize 'DAV20.Edit'}}">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="item-delete" title="{{localize 'DAV20.Delete'}}">
+                    <i class="fas fa-trash"></i>
+                </a>
+
+            </li>
+
+            {{/each}}
+
+        </ol>
+
+    </section>
+
+    <section class="actor-sire">
+        <label for="data.sire.name" class="common-label">{{data.sire.name}}</label>
+
+        <div class="richtext-editor">
+            {{editor content=data.sire.description target="data.sire.description" button=true owner=owner editable=editable}}
+        </div>
+
+    </section>
+
+</section>

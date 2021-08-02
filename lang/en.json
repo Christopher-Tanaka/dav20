@@ -1,6 +1,4 @@
 {
-
-    
     "DAV20.Rolling": "Rolling",
     "DAV20.Roll": "Roll",
     "DAV20.Cancel": "Cancel",
@@ -8,6 +6,13 @@
     "DAV20.Dice2": "Dice 2",
     "DAV20.Bloodpoints": "Bloodpoints",
     "DAV20.Animalism": "Animalism",
+    "DAV20.Edit": "Edit",
+    "DAV20.Add": "Add",
+    "DAV20.Delete": "Delete",
+    "DAV20.ItemNew": "New",
+    "DAV20.Combat": "Combat",
+    "DAV20.Cost": "Cost",
+    "DAV20.Type": "Type",
 
     "DAV20.Name": "Name",
     "DAV20.Nature": "Nature",
@@ -27,6 +32,7 @@
     "DAV20.Physical": "Physical",
     "DAV20.Social": "Social",
     "DAV20.Mental": "Mental",
+    "DAV20.Supernatural": "Supernatural",
 
     "DAV20.Strength": "Strength",
     "DAV20.Charisma": "Charisma",
@@ -76,6 +82,18 @@
     "DAV20.Survival": "Survival",
     "DAV20.Theology": "Theology",
 
+    "DAV20.Allies": "Allies",
+    "DAV20.AlternateIdentity": "Alternate Identity",
+    "DAV20.Contacts": "Contacts",
+    "DAV20.Domain": "Domain",
+    "DAV20.Fame": "Fame",
+    "DAV20.Herd": "Herd",
+    "DAV20.Influence": "Influence",
+    "DAV20.Mentor": "Mentor",
+    "DAV20.Resources": "Resources",
+    "DAV20.Retainers": "Retainers",
+    "DAV20.Status": "Status",
+
     "DAV20.Advantages": "Advantages",
     "DAV20.Disciplines": "Disciplines",
     "DAV20.Discipline": "Discipline",
@@ -91,7 +109,7 @@
     "DAV20.Instinct": "Instinct",
     "DAV20.Courage": "Courage",
 
-    "DAV20.OtherTrats": "Other Trats",
+    "DAV20.OtherTraits": "Other Traits",
     "DAV20.Road": "Road",
     "DAV20.RoadSins": "Road Sins",
     "DAV20.Health": "Health",
@@ -112,7 +130,11 @@
     "DAV20.Modifier": "Modifier",
     "DAV20.Difficulty": "Difficulty",
 
-    "Weapon.Lable": "Weapon",
+    "DAV20.MeritsFlaws": "Merits/Flaws",
+    "DAV20.Merits": "Merits",
+    "DAV20.Flaws": "Flaws",
+
+    "Weapon.Label": "Weapon",
     "Weapon.Concealment": "Concealment",
     "WeaponConcealment.Pouch": "Pouch (P)",
     "WeaponConcealment.LooseClothing": "Loose Clothing (C)",
@@ -128,11 +150,20 @@
     "WeaponDamageType.Lethal": "Lethal (L)",
     "WeaponDamageType.Aggravated": "Aggravated (A)",
 
+    "Armor.Class": "Class",
+    "Armor.ClassOne": "Class One(HeavyClothing)",
+    "Armor.ClassTwo": "Class Two(Cloth/Textile Armor)",
+    "Armor.ClassThree": "Class Three(Composite Armor)",
+    "Armor.ClassFour": "Class Four(Heavy Armor)",
+    "Armor.ClassFive": "Class Five(Knight`s Amor)",
+    "Armor.Rating": "Rating",
+    "Armor.Penalty": "Penalty",
+
     "HealthInjuryType.Aggravated": "X",
     "HealthInjuryType.Lethal": "/",
     "HealthInjuryType.Bashing": "-",
     
 
-    "WeaponNotes": "Notes"
+    "Weapon.Notes": "Notes"
 
 }

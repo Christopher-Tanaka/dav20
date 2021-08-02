@@ -1,0 +1,41 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+
+    <section class="armor-sheet-body">
+
+        <div class="form-group">
+            <label>{{ localize "Armor.Class" }}</label>
+            <select name="data.armor.armorClass">
+                {{#select data.armor.armorClass}}
+                <option value=""></option>
+                {{#each config.armorClasses as |name type|}}
+                <option value="{{type}}">{{localize name}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="">{{ localize "Armor.Rating" }}</label>
+            <select name="data.armor.rating">
+                {{#select data.armor.rating}}
+                <option value=""></option>
+                {{#numLoop 5}}
+                <option value="{{this}}">{{this}}</option>
+                {{/numLoop}}
+                {{/select}}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>{{ localize "Armor.Penalty" }}</label>
+            <input type="text" name="data.armor.penalty" value="{{data.armor.penalty}}"  placeholder="{{ localize 'Armor.Penalty' }}"/>
+        </div>
+
+    </section>
+
+
+</form>

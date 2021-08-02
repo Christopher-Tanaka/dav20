@@ -1,56 +1,49 @@
 <section class="actor-disciplines-tab">
-
-    <div class="discipline-tree">
-
-        <ol>
+        <ol class="disciplines-list">
         {{#each disciplines as |discipline|}}
 
-        <li>
-            <h3>{{discipline.label}}</h3>
-        </li>
-
-
-
-        <ol>
-
-            {{#each discipline.powers as |power i|}}
-            <li>
-                <h4>{{power.name}}</h4>
+            <li class="discipline-header">
+                <h3 class="discipline-title">{{discipline.label}}</h3>
+                <a class="item-create" title="{{localize 'DAV20.Add'}}" data-type="power">
+                    <i class="fas fa-plus"></i> {{localize "DAV20.Add"}}
+                </a>
             </li>
+
+            <ol class="power-list">
+
+            <div class="power-row power-header">
+                <h3>{{ localize 'Name' }}</h3>
+                <h3>{{ localize "DAV20.Level" }}</h3>
+                <h3>{{ localize "DAV20.Dice1" }}</h3>
+                <h3>{{ localize "DAV20.Dice2" }}</h3>
+                <h3>{{ localize "DAV20.Bloodpoints" }}</h3>
+                <h3>{{ localize "DAV20.Edit" }}</h3>
+                <h3>{{ localize "DAV20.Delete" }}</h3>
+            </div>
+            
+            {{#each discipline.powers as |item i|}}
+                <li class="item power-row" data-item-id="{{item._id}}">
+
+                    <h4>{{ item.name}}</h4>
+                    <h4>{{ item.data.props.level}}</h4>
+
+                    <h4>{{ item.data.props.dice1 }}</h4>
+                    <h4>{{ item.data.props.dice2 }}</h4>
+                    <h4>{{ item.data.props.bloodCost }}</h4>
+                    <a class="item-edit" title="{{localize 'DAV20.Edit'}}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="item-delete" title="{{localize 'DAV20.Delete'}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </li>
 
             {{/each}}
 
-
-        </ol>
-
+            </ol>
 
         {{/each}}
 
         </ol>
-
-
-        
-
-        
-
-        {{#keys disciplines}}
-            <label>{{discipline}}</label>
-
-
-            {{#values ../discipline discipline}}
-                <label>teste</label>
-            {{/values}}
-
-            
-
-        {{/keys}}
-
-        <div class="discipline-powers">
-
-
-        </div>
-
-    </div>
-    
-
+ 
 </section>

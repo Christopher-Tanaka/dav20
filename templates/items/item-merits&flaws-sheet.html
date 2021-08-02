@@ -1,0 +1,47 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+    <section class="item-sheet merits-flaws-sheet-body">
+
+        {{!-- Attributes Tab --}}
+        <div class="merits-flaws-details">
+
+            <div class="form-group">
+                <label>{{ localize "DAV20.MeritsFlaws" }}</label>
+                <select name="data.meritsAndFlaws.meritsOrFlaws">
+                    {{#select data.meritsAndFlaws.meritsOrFlaws}}
+                    <option value=""></option>
+                    {{#each config.meritsAndFlaws as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>{{ localize "DAV20.Type" }}</label>
+                <select name="data.meritsAndFlaws.Type">
+                    {{#select data.meritsAndFlaws.Type}}
+                    <option value=""></option>
+                    {{#each config.meritsAndFlawsTypes as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>{{ localize "DAV20.Cost" }}</label>
+                <input type="text" name="data.meritsAndFlaws.cost" value="{{data.meritsAndFlaws.cost}}"  placeholder="{{ localize 'DAV20.Cost' }}"/>
+            </div>
+
+        </div>
+
+        <div class="richtext-editor">
+            {{editor content=data.meritsAndFlaws.description target="data.meritsAndFlaws.description" button=true owner=owner editable=editable}}
+        </div>
+
+    </section>
+</form>

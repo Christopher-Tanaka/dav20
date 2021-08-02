@@ -13,6 +13,26 @@ DAV20.damageTypes = {
     Aggravated: "WeaponDamageType.Aggravated"
 };
 
+DAV20.armorClasses = {
+    ClassOne: "Armor.ClassOne",
+    ClassTwo: "Armor.ClassTwo",
+    ClassThree: "Armor.ClassThree",
+    ClassFour: "Armor.ClassFour",
+    ClassFive: "Armor.ClassFive",
+};
+
+DAV20.meritsAndFlaws = {
+    Merits: "DAV20.Merits",
+    Flaws: "DAV20.Flaws",
+};
+
+DAV20.meritsAndFlawsTypes = {
+    Physical: "DAV20.Physical",
+    Social: "DAV20.Social",
+    Mental: "DAV20.Mental",
+    Supernatural: "DAV20.Supernatural",
+};
+
 DAV20.injuryTypes = {
     Bashing: "HealthInjuryType.Bashing",
     Lethal: "HealthInjuryType.Lethal",

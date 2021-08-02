@@ -76,46 +76,45 @@
             "generation": "",
             "chronicle": "",
             "concept": "",
-            "sire": "",
             "biography": "",
             "equipment": "",
             "notes": "",
             "attributes": {
               "strength": {
-                  "value": 0,
+                  "value": 1,
                   "name": "DAV20.Strength"
                 },
                 "charisma": {
-                  "value": 0,
+                  "value": 1,
                   "name": "DAV20.Charisma"
                 },
                 "perception": {
-                  "value": 0,
+                  "value": 1,
                   "name": "DAV20.Perception"
                 },
 
                 "dexterity": {
-                  "value": 0,
+                  "value": 1,
                   "name": "DAV20.Dexterity"
                 },
                 "manipulation": {
-                  "value": 0,
+                  "value": 1,
                   "name": "DAV20.Manipulation"
                 },
                 "intelligence": {
-                  "value": 0,
+                  "value": 1,
                   "name": "DAV20.Intelligence"
                 },
                 "stamina": {
-                  "value":0,
+                  "value": 1,
                   "name": "DAV20.Stamina"
                 },
                 "apearence": {
-                  "value":0,
+                  "value": 1,
                   "name": "DAV20.Appearence"
                 },
                 "wits": {
-                  "value": 0,
+                  "value": 1,
                   "name": "DAV20.Wits"
                 }
             },
@@ -242,6 +241,58 @@
                 "name": "DAV20.Theology"
               }
             },
+            "backgrounds":{
+              "allies" : {
+                "value": 0,
+                "name": "DAV20.Allies"
+              },
+              "alternateIdentity" : {
+                "value": 0,
+                "name": "DAV20.AlternateIdentity"
+              },
+              "contacts" : {
+                "value": 0,
+                "name": "DAV20.Contacts"
+              },
+              "domain" : {
+                "value": 0,
+                "name": "DAV20.Domain"
+              },
+              "fame" : {
+                "value": 0,
+                "name": "DAV20.Fame"
+              },
+              "herd" : {
+                "value": 0,
+                "name": "DAV20.Herd"
+              },
+              "mentor" : {
+                "value": 0,
+                "name": "DAV20.Mentor"
+              },
+              "resources" : {
+                "value": 0,
+                "name": "DAV20.Resources"
+              },
+              "retainers" : {
+                "value": 0,
+                "name": "DAV20.Retainers"
+              },
+              "status" : {
+                "value": 0,
+                "name": "DAV20.Status"
+              }
+            },
+            "sire": {
+              "name": "",
+              "destroyed": "",
+              "description": ""
+            },
+            "heaven": {
+              "location": "",
+              "description": ""
+            },
+
           "healthLevels": {
             "bruised": {
               "injuryTypes": "",
@@ -306,9 +357,10 @@
     },
     "Item":{
         "types": [
+            "armor",
             "weapon",
-            "vehicle",
-            "power"
+            "power",
+            "merits&flaws"
         ],
         "templates" : {
             "itemDescription": {

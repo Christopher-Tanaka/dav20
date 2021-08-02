@@ -44,10 +44,15 @@ export class VampireSheet extends ActorSheet {
     data.config = CONFIG.DAV20;
 
     let powers = data.items.filter(function (item) { return item.type == "power" })
+    let weapons = data.items.filter(function (item) { return item.type == "weapon" })
+    let meritsAndFlaws = data.items.filter(function (item) { return item.type == "merits&flaws" })
+    let flaws = data.items.filter(function (item) { return item.type == "weapon" })
 
     const disciplines = this._formatDisciplinesAndPowers(data, powers)
+    this._formatMeritsAndFlaws(data, meritsAndFlaws)
 
     data.disciplines = disciplines;
+    data.weapons = weapons;
 
     data.actor = actorData;
     data.data = actorData.data;
@@ -66,14 +71,14 @@ export class VampireSheet extends ActorSheet {
     const disciplines = new Map();
 
     powers.forEach(power => {
-      const key = power.data.discipline.disciplineTree;
+      const key = power.data.props.disciplineTree;
 
       if (disciplines.has(key)) {
         disciplines.get(key).powers.push(power);
       } else {
         const value = {
           level: 1,
-          label: power.data.discipline.disciplineTree,
+          label: power.data.props.disciplineTree,
           powers: []
         };
 
@@ -87,6 +92,16 @@ export class VampireSheet extends ActorSheet {
     const sorted = Object.fromEntries(disciplines);
 
     return sorted;
+  }
+
+  _formatMeritsAndFlaws(data, meritsAndFlaws) {
+
+    data.merits = meritsAndFlaws.filter(function (item) {
+      const merits = item.data.meritsAndFlaws.meritsOrFlaws == "Merits"
+      return merits
+    })
+
+    data.flaws = meritsAndFlaws.filter(function (item) {return item.data.meritsAndFlaws.meritsOrFlaws == "Flaws"})
   }
 
 
@@ -105,6 +120,11 @@ export class VampireSheet extends ActorSheet {
     // Rollable Vampire abilities.
     html.find('.abilityCheck').click(this._onVampireRollDialog.bind(this))
     //html.find('.resource-value-empty').click(this._onDotCounterEmpty.bind(this))
+
+     
+    // Owned Item management
+     html.find('.item-create').click(this._onItemCreate.bind(this));
+     html.find('.item-delete').click(this._onItemDelete.bind(this));
 
     if (!this.options.editable) {
       console.log("dav20 | sheet is not editable");
@@ -434,6 +454,45 @@ export class VampireSheet extends ActorSheet {
       speaker: ChatMessage.getSpeaker({ actor: actor }),
       flavor: label
     })
+  }
+
+  _onItemCreate(event) {
+    event.preventDefault();
+    const header = event.currentTarget;
+    const type = header.dataset.type;
+    var newItemData = {} 
+
+    if(type == "power")
+      newItemData = this._createEmptyDiscipline("Ofuscação");
+    else
+      newItemData = this._createEmptyDiscipline("Ofuscação");
+
+    const itemData = {
+      name: game.i18n.format("DND5E.ItemNew", {type: game.i18n.localize(`DND5E.ItemType${type.capitalize()}`)}),
+      type: type,
+      data: newItemData
+    };
+    delete itemData.data["type"];
+    return this.actor.createEmbeddedDocuments("Item", [itemData]);
+  }
+
+  _onItemDelete(event) {
+    event.preventDefault();
+    const li = event.currentTarget.closest(".item");
+    const item = this.actor.items.get(li.dataset.itemId);
+    if ( item ) return item.delete();
+  }
+
+  _createEmptyDiscipline(disciplineTree) {
+    return {
+      props: {
+        bloodCost: 0,
+        dice1: "",
+        dice2: "",
+        level: 1,
+        disciplineTree: disciplineTree
+      }
+    }
   }
 
   // There's gotta be a better way to do this but for the life of me I can't figure it out

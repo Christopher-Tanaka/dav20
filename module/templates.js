@@ -9,6 +9,8 @@ export const preloadHandlebarsTemplates = async function() {
     // Actor Sheet Partials
     "systems/dav20/templates/actors/parts/actor-abilities.html",
     "systems/dav20/templates/actors/parts/actor-disciplines.html",
+    "systems/dav20/templates/actors/parts/actor-combat.html",
+    "systems/dav20/templates/actors/parts/actor-background.html",
 
   ]);
 };

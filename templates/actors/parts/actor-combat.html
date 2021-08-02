@@ -1,0 +1,44 @@
+<section class="actor-combat-tab">
+
+    <section class="actor-weapons">
+        <header class="weapon-row weapon-header">
+            <h3>{{ localize "Weapon.Label" }}</h3>
+            <h3>{{ localize "Weapon.Concealment" }}</h3>
+            <h3>{{ localize "Weapon.MinStr" }}</h3>
+            <h3>{{ localize "Weapon.Range" }}</h3>
+            <h3>{{ localize "Weapon.Damage" }}</h3>
+            <h3>{{ localize "Weapon.DamageType" }}</h3>
+            <h3>{{ localize "Weapon.Notes" }}</h3>
+            <a class="item-create" title="{{localize 'DAV20.Add'}}" data-type="weapon">
+                <i class="fas fa-plus"></i> {{localize "DAV20.Add"}}
+            </a>
+        </header>
+    
+        <ul class="weapons-list">
+        {{#each weapons as |weapon|}}
+            
+            <li class="item weapon-row" data-item-id="{{weapon._id}}">
+                <h4>{{weapon.name}}</h4>
+                <h4>{{weapon.data.concealment}}</h4>
+                <h4>{{weapon.data.minStr}}</h4>
+                <h4>{{weapon.data.range}}</h4>
+                <h4>{{weapon.data.damage}}</h4>
+                <h4>{{weapon.data.damageType}}</h4>
+                <h4>{{weapon.notes}}</h4>
+                <a class="item-delete" title="{{localize 'DAV20.Delete'}}">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </li>
+    
+        {{/each}}
+    
+        </ul>
+
+    </section>
+
+    <section class="actor-armor">
+        
+    </section>
+
+
+</section>
