@@ -124,6 +124,7 @@ export class VampireSheet extends ActorSheet {
      
     // Owned Item management
      html.find('.item-create').click(this._onItemCreate.bind(this));
+     html.find('.item-edit').click(this._onItemEdit.bind(this));
      html.find('.item-delete').click(this._onItemDelete.bind(this));
 
     if (!this.options.editable) {
@@ -481,6 +482,13 @@ export class VampireSheet extends ActorSheet {
     const li = event.currentTarget.closest(".item");
     const item = this.actor.items.get(li.dataset.itemId);
     if ( item ) return item.delete();
+  }
+
+  _onItemEdit(event) {
+    event.preventDefault();
+    const li = event.currentTarget.closest(".item");
+    const item = this.actor.items.get(li.dataset.itemId);
+    return item.sheet.render(true);
   }
 
   _createEmptyDiscipline(disciplineTree) {

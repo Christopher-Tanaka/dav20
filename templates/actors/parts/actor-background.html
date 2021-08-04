@@ -1,31 +1,34 @@
 <section class="tab actor-background-tab">
 
     <section class="actor-background">
+        <h3>{{localize "DAV20.Backgrounds"}}</h3>
         {{#each data.backgrounds as |background key|}}
-        <label for="data.abilities.{{key}}.value" class="common-label"
-            data-label="{{localize background.name}}">{{localize background.name}}
-        </label>
-
-        <div class="resource-value" data-value="{{background.value}}" data-name="data.abilities.{{key}}.value">
-            {{#numLoop 5}}
-            <span class="resource-value-step" data-index="{{this}}"></span>
-            {{/numLoop}}
+        <div class="background-row">
+            <label class="common-label"
+                data-label="{{localize background.name}}">{{localize background.name}}
+            </label>
+    
+            <div class="resource-value" data-value="{{background.value}}" data-name="data.backgrounds.{{key}}.value">
+                {{#numLoop 5}}
+                <span class="resource-value-step" data-index="{{this}}"></span>
+                {{/numLoop}}
+            </div>
         </div>
         {{/each}}
+        
+
     </section>
 
     <section class="actor-merits">
 
         <ol class="merits-list">
+            <h3>{{localize "DAV20.Merits"}}</h3>
         
             {{#each merits as |item key|}}
-            <div class="flaw-row flaw-header">
+            <li class="item flaw-row" data-item-id="{{item._id}}"> 
                 <h3>{{ localize 'Name' }}</h3>
                 <h3>{{ localize "DAV20.Type" }}</h3>
                 <h3>{{ localize "DAV20.Cost" }}</h3>
-            </div>
-
-            <li class="flaw-row" data-item-id="{{item._id}}"> 
 
                 <h4>{{ item.name }}</h4>
                 <h4>{{ item.data.meritsAndFlaws.Type }}</h4>
@@ -48,7 +51,7 @@
     <section class="actor-flaws">
 
         <ol class="flaws-list">
-        
+            <h3>{{localize "DAV20.Flaws"}}</h3>
             {{#each flaws as |item key|}}
             <div class="flaw-row flaw-header">
                 <h3>{{ localize 'Name' }}</h3>
@@ -56,7 +59,7 @@
                 <h3>{{ localize "DAV20.Cost" }}</h3>
             </div>
 
-            <li class="flaw-row" data-item-id="{{item._id}}"> 
+            <li class="item flaw-row" data-item-id="{{item._id}}"> 
 
                 <h4>{{ item.name }}</h4>
                 <h4>{{ item.data.meritsAndFlaws.Type }}</h4>
@@ -77,6 +80,7 @@
     </section>
 
     <section class="actor-sire">
+        <h3>{{localize 'DAV20.YourMaker'}}</h3>
         <label for="data.sire.name" class="common-label">{{data.sire.name}}</label>
 
         <div class="richtext-editor">

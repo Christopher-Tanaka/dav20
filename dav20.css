@@ -631,6 +631,58 @@ Discipline item sheet css
 
 */
 
+
+/*
+Background tab
+*/
+.dav20 .actor-background-tab {
+  display: grid;
+  justify-content: center;
+  column-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+  "backgrounds merits flaws"
+  "sire sire sire";
+}
+
+.dav20 .actor-background {
+  grid-area: backgrounds;
+  display: flex;
+  flex-direction: column;
+}
+
+.dav20 .background-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.dav20 .actor-merits {
+  grid-area: merits;
+  
+}
+
+.dav20 .merits-list {
+  display: grid;
+  justify-content: center;
+  column-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(30px, auto);
+}
+
+.dav20 .actor-flaws {
+  grid-area: flaws;
+  display: grid;
+  justify-content: center;
+  column-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(30px, auto);
+}
+
+.dav20 .actor-sire {
+  grid-area: sire;
+}
+
 .dav20 .item-discipline-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -658,7 +710,6 @@ Discipline item sheet css
   height: 100%;
   width: 100%;
 }
-
 
 .item-sheet {
   height: 100%;
