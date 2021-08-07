@@ -461,15 +461,15 @@ export class VampireSheet extends ActorSheet {
     event.preventDefault();
     const header = event.currentTarget;
     const type = header.dataset.type;
+    const label = header.dataset.label;
     var newItemData = {} 
 
     if(type == "power")
-      newItemData = this._createEmptyDiscipline("Ofuscação");
-    else
-      newItemData = this._createEmptyDiscipline("Ofuscação");
+      newItemData = this._createEmptyDiscipline(label);
+
 
     const itemData = {
-      name: game.i18n.format("DND5E.ItemNew", {type: game.i18n.localize(`DND5E.ItemType${type.capitalize()}`)}),
+      name: game.i18n.format("Name"),
       type: type,
       data: newItemData
     };

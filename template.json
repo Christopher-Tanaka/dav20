@@ -79,6 +79,8 @@
             "biography": "",
             "equipment": "",
             "notes": "",
+            "prelude": "",
+            "goals": "",
             "attributes": {
               "strength": {
                   "value": 1,

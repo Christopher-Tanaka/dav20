@@ -1,26 +1,55 @@
+@font-face {
+  font-family: 'Andada Pro';
+  src: url('./fonts/AndadaPro-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Andada Pro Bold';
+  src: url('./fonts/AndadaPro-Bold.ttf');
+}
+
+
+.window-app .window-content {
+  background: unset;
+  background-color: white;
+}
+
 .dav20 {
+  font-family: 'Andada Pro';
   /* ----------------------------------------- */
   /*  Element Styles                           */
   /* ----------------------------------------- */
   /* Form Groups */
   /* Tags */
+}
 
-  font-family: "Palatino Linotype", serif;
+
+
+.dav20 .profile-img {
+  background-color: rgba(138,3,3,1);
 }
 
 .dav20 h2 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   text-align: center;
   border-bottom: 0px solid #300b0b;
   margin-top: 5px;
   color: white;
+  background-color: rgba(138,3,3,1);
 
+}
+
+/*
   background: rgb(238,229,229);
-background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, rgba(238,229,229,1) 100%);
+  background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, rgba(238,229,229,1) 100%);
+*/
+
+.dav20 h3 {
+  margin: 1px;
 }
 
 .dav20 input[type="text"],
@@ -30,6 +59,7 @@ background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, 
   border: 1px solid #7a7971;
   background: rgba(0, 0, 0, 0.05);
   color: #191813;
+  font-family: 'Andada Pro';
 }
 .dav20 input[type="text"]:hover,
 .dav20 input[type="number"]:hover,
@@ -88,7 +118,7 @@ background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, 
 
 .dav20 .summary-info {
   flex: 25%;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   padding: 7px;  
 }
@@ -99,7 +129,7 @@ background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, 
   justify-content: space-around;
   margin-top: 2px;
   margin-bottom: 2px;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -119,9 +149,9 @@ background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, 
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   font-size: 15px;
-  font-weight: 500;
+  font-family: 'Andada Pro Bold';
+  padding-bottom: 5px;
 }
-
 
 .dav20 .label-abilitie {
   display: flex;
@@ -129,7 +159,7 @@ background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, 
   justify-content: center;
   border-bottom: 2px solid #782e22;
   border-top: 2px solid #782e22;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 /* .dav20 .actor-abilities-header {
@@ -319,7 +349,7 @@ background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, 
   display: grid;
   justify-content: center;
   column-gap: 10px;
-  grid-template-columns: 20px 1.5fr .7fr .6fr .6fr;
+  grid-template-columns: 20px 1.2fr .8fr .6fr .6fr;
   grid-auto-rows: minmax(30px, auto);
   grid-template-areas:
       "sinLevel-1 roadSins-1 road conscienceConviction conscienceConvictionValue conscienceConvictionValue"
@@ -332,10 +362,6 @@ background: linear-gradient(90deg, rgba(238,229,229,1) 0%, rgba(138,3,3,1) 52%, 
       "sinLevel-8 roadSins-8 bloodPool health health health"
       "sinLevel-9 roadSins-9 bloodPool health health health"
       "sinLevel-10 roadSins-10 bloodPool health health health";
-}
-
-.dav20 .actor-road-label {
-  padding-left: 100px;
 }
 
 .dav20 .sin-level-1 {
@@ -591,7 +617,9 @@ Character Disciplines
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
+  background-color: rgba(138,3,3,1);
+  color: white;
+  align-items: center;
 } 
 
 .discipline-title {
@@ -643,40 +671,75 @@ Background tab
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
   "backgrounds merits flaws"
-  "sire sire sire";
+  "prelude goals sire";
 }
 
 .dav20 .actor-background {
-  grid-area: backgrounds;
   display: flex;
   flex-direction: column;
 }
 
-.dav20 .background-row {
-  display: flex;
-  flex-direction: row;
+.dav20 .background-title {
+  align-self: center;
+  font-family: 'Andada Pro Bold';
+  padding: 5px;
 }
+
+.dav20 .actor-backgrounds {
+  grid-area: backgrounds;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(25px, auto);
+  justify-content: space-around; 
+  align-items: center;
+}
+
+.dav20 .actor-backgrounds > *:nth-child(4n+1),
+.dav20 .actor-backgrounds > *:nth-child(4n+2) {
+  background-color: #FFE6E6
+}
+
 
 .dav20 .actor-merits {
   grid-area: merits;
-  
-}
-
-.dav20 .merits-list {
-  display: grid;
-  justify-content: center;
-  column-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: minmax(30px, auto);
+  display: flex;
+  flex-direction: column;
 }
 
 .dav20 .actor-flaws {
   grid-area: flaws;
+  display: flex;
+  flex-direction: column;
+}
+
+.dav20 .actor-prelude {
+  grid-area: prelude;
+}
+
+.dav20 .actor-goals {
+  grid-area: goals;
+}
+
+.dav20 .merits-grid {
   display: grid;
   justify-content: center;
   column-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-auto-rows: minmax(30px, auto);
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 250px;
+}
+
+.dav20 .flaws-grid {
+  display: grid;
+  justify-content: center;
+  column-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: minmax(30px, auto);
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 250px;
 }
 
 .dav20 .actor-sire {
@@ -690,13 +753,43 @@ Background tab
   justify-items: center;
   font-size: 15px;
   font-weight: 500;
+  align-items: center;
+}
 
+.dav20 .power-header {
+  opacity: 0.3;
 }
 
 .actor-sire {
   height: 100%;
   width: 100%;
   max-height: 300px;
+}
+
+.dav20 .weapon-header {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: stretch;
+  column-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: minmax(30px, auto);
+  opacity: 0.3;
+}
+
+.dav20 .weapons-list {
+  margin: 0px;
+  padding: 0px;
+}
+
+.dav20 .weapons {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: stretch;
+  column-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: minmax(30px, auto);
 }
 
 .dav20 .richtext-editor {

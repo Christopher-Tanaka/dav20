@@ -4,7 +4,7 @@
 
             <li class="discipline-header">
                 <h3 class="discipline-title">{{discipline.label}}</h3>
-                <a class="item-create" title="{{localize 'DAV20.Add'}}" data-type="power">
+                <a class="item-create" title="{{localize 'DAV20.Add'}}" data-type="power" data-label="{{discipline.label}}">
                     <i class="fas fa-plus"></i> {{localize "DAV20.Add"}}
                 </a>
             </li>
@@ -17,8 +17,8 @@
                 <h3>{{ localize "DAV20.Dice1" }}</h3>
                 <h3>{{ localize "DAV20.Dice2" }}</h3>
                 <h3>{{ localize "DAV20.Bloodpoints" }}</h3>
-                <h3>{{ localize "DAV20.Edit" }}</h3>
-                <h3>{{ localize "DAV20.Delete" }}</h3>
+                <h3></h3>
+                <h3></h3>
             </div>
             
             {{#each discipline.powers as |item i|}}

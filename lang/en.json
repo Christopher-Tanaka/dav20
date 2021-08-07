@@ -13,7 +13,9 @@
     "DAV20.Combat": "Combat",
     "DAV20.Cost": "Cost",
     "DAV20.Type": "Type",
-    "DAV20.YourMaker": "Your maker",
+    "DAV20.YourMaker": "About your maker",
+    "DAV20.Prelude": "Prelude",
+    "DAV20.Goals": "Goals",
 
     "DAV20.Name": "Name",
     "DAV20.Nature": "Nature",
@@ -142,7 +144,7 @@
     "WeaponConcealment.LongCloak": "Long Cloak (L)",
     "WeaponConcealment.MayNotBeConcealed": "May Not Be Concealed (N)",
 
-    "Weapon.MinStr": "Minimum Strength",
+    "Weapon.MinStr": "Min. Strength",
     "Weapon.Range": "Range",
 
     "Weapon.Damage": "Damage",

@@ -1,6 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
     <section class="item-sheet merits-flaws-sheet-body">
@@ -22,8 +22,8 @@
 
             <div class="form-group">
                 <label>{{ localize "DAV20.Type" }}</label>
-                <select name="data.meritsAndFlaws.Type">
-                    {{#select data.meritsAndFlaws.Type}}
+                <select name="data.meritsAndFlaws.type">
+                    {{#select data.meritsAndFlaws.type}}
                     <option value=""></option>
                     {{#each config.meritsAndFlawsTypes as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
