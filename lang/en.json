@@ -1,5 +1,6 @@
 {
     "DAV20.Rolling": "Rolling",
+    "DAV20.Successes": "Successes",
     "DAV20.Roll": "Roll",
     "DAV20.Cancel": "Cancel",
     "DAV20.Dice1": "Dice 1",
@@ -16,6 +17,10 @@
     "DAV20.YourMaker": "About your maker",
     "DAV20.Prelude": "Prelude",
     "DAV20.Goals": "Goals",
+
+    "DAV20.Attack": "Attack",
+    "DAV20.AttackName": "Attack",
+    "DAV20.NewWeapon": "New Weapon",
 
     "DAV20.Name": "Name",
     "DAV20.Nature": "Nature",
@@ -153,6 +158,8 @@
     "WeaponDamageType.Lethal": "Lethal (L)",
     "WeaponDamageType.Aggravated": "Aggravated (A)",
 
+    "DAV20.NewArmor": "New Amor",
+    "Armor.Label": "Armor",
     "Armor.Class": "Class",
     "Armor.ClassOne": "Class One(HeavyClothing)",
     "Armor.ClassTwo": "Class Two(Cloth/Textile Armor)",

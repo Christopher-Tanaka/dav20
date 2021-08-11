@@ -1,6 +1,6 @@
 <section class="actor-disciplines-tab">
         <ol class="disciplines-list">
-        {{#each disciplines as |discipline|}}
+        {{#each data.disciplines as |discipline|}}
 
             <li class="discipline-header">
                 <h3 class="discipline-title">{{discipline.label}}</h3>
@@ -9,7 +9,7 @@
                 </a>
             </li>
 
-            <ol class="power-list">
+            <ol class="power-list" data-item-id="{{discipline._id}}">
 
             <div class="power-row power-header">
                 <h3>{{ localize 'Name' }}</h3>
@@ -24,7 +24,7 @@
             {{#each discipline.powers as |item i|}}
                 <li class="item power-row" data-item-id="{{item._id}}">
 
-                    <h4>{{ item.name}}</h4>
+                    <h4 class="disciplineCheck">{{ item.name}}</h4>
                     <h4>{{ item.data.props.level}}</h4>
 
                     <h4>{{ item.data.props.dice1 }}</h4>

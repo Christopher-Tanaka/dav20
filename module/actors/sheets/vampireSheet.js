@@ -39,59 +39,130 @@ export class VampireSheet extends ActorSheet {
 
   /** @override */
   getData() {
-    const data = super.getData();
-    const actorData = data.data;
-    data.config = CONFIG.DAV20;
+    const data = super.getData()
+    const actorData = data.data
+    data.config = CONFIG.DAV20
 
     let powers = data.items.filter(function (item) { return item.type == "power" })
     let weapons = data.items.filter(function (item) { return item.type == "weapon" })
+    let armors = data.items.filter(function (item) { return item.type == "armor" })
     let meritsAndFlaws = data.items.filter(function (item) { return item.type == "merits&flaws" })
-    let flaws = data.items.filter(function (item) { return item.type == "weapon" })
+
+    this._formatWeaponsTypes(weapons)
+    this._formatArmorTypes(armors)
 
     const disciplines = this._formatDisciplinesAndPowers(data, powers)
     this._formatMeritsAndFlaws(data, meritsAndFlaws)
 
-    data.disciplines = disciplines;
-    data.weapons = weapons;
+    actorData.data.disciplines = disciplines
+    actorData.data.weapons = weapons
+    actorData.data.armors = armors
 
-    data.actor = actorData;
-    data.data = actorData.data;
+    data.actor = actorData
+    data.data = actorData.data
 
     // Owned Items
-    data.items = actorData.items;
+    data.items = actorData.items
     for (let i of data.items) {
-      const item = this.actor.items.get(i._id);
-      i.labels = item.labels;
+      const item = this.actor.items.get(i._id)
+      i.labels = item.labels
     }
 
-    return data;
+    return data
   }
 
   _formatDisciplinesAndPowers(data, powers) {
-    const disciplines = new Map();
+    const disciplines = new Map()
 
     powers.forEach(power => {
-      const key = power.data.props.disciplineTree;
+      const key = power.data.props.disciplineTree
 
       if (disciplines.has(key)) {
-        disciplines.get(key).powers.push(power);
+        disciplines.get(key).powers.push(power)
       } else {
         const value = {
           level: 1,
           label: power.data.props.disciplineTree,
           powers: []
-        };
+        }
 
-        value.powers.push(power);
-        disciplines.set(key, value);
+        value.powers.push(power)
+        disciplines.set(key, value)
       }
 
     });
 
     // Sort the spellbook by section level
-    const sorted = Object.fromEntries(disciplines);
+    const sorted = Object.fromEntries(disciplines)
 
-    return sorted;
+    return sorted
+  }
+
+  _formatWeaponsTypes(weapons) {
+
+    weapons.forEach(item => {
+
+      if (typeof item.data.weapon !== 'undefined') {
+        switch (item.data.weapon.concealment) {
+          case 'Pouch': 
+            item.data.weapon.concealmentDesc = game.i18n.localize('WeaponConcealment.Pouch');
+            break;
+          case 'LooseClothing': 
+            item.data.weapon.concealmentDesc = game.i18n.localize('WeaponConcealment.LooseClothing'); 
+            break;
+          case 'LongCloak': 
+            item.data.weapon.concealmentDesc = game.i18n.localize('WeaponConcealment.LongCloak'); 
+            break;
+          case 'MayNotBeConcealed': 
+            item.data.weapon.concealmentDesc = game.i18n.localize('WeaponConcealment.MayNotBeConcealed'); 
+            break;
+          default:
+            item.data.weapon.concealmentDesc = '';
+        }
+  
+        switch (item.data.weapon.damageType) {
+          case 'Bashing':
+            item.data.weapon.damageTypesDesc = game.i18n.localize('WeaponDamageType.Bashing');
+            break;
+          case 'Lethal':
+            item.data.weapon.damageTypesDesc = game.i18n.localize('WeaponDamageType.Lethal');
+            break;
+          case 'Aggravated':
+            item.data.weapon.damageTypesDesc = game.i18n.localize('WeaponDamageType.Aggravated');
+            break;
+        }
+      }
+    })
+  }
+
+  _formatArmorTypes(armors) {
+    armors.forEach(item => {
+
+      if (typeof item.data.armor !== 'undefined') {
+        switch (item.data.armor.armorClass) {
+          case 'ClassOne':
+            item.data.armor.armorClassDesc = game.i18n.localize('Armor.ClassOne')
+            break
+          case 'ClassTwo':
+            item.data.armor.armorClassDesc = game.i18n.localize('Armor.ClassTwo')
+            break
+          case 'ClassThree':
+            item.data.armor.armorClassDesc = game.i18n.localize('Armor.ClassThree')
+            break
+          case 'ClassFour':
+            item.data.armor.armorClassDesc = game.i18n.localize('Armor.ClassFour')
+            break
+          case 'ClassFive':
+            item.data.armor.armorClassDesc = game.i18n.localize('Armor.ClassFive')
+            break
+          default:
+            item.data.armor.armorClassDesc = ''
+            break
+        }
+      }
+
+    })
+
   }
 
   _formatMeritsAndFlaws(data, meritsAndFlaws) {
@@ -118,7 +189,8 @@ export class VampireSheet extends ActorSheet {
     html.find('.resource-health-step').click(this._onHealthCounterClick.bind(this))
     html.find('.resource-counter-step').click(this._onSquareCounterClick.bind(this))
     // Rollable Vampire abilities.
-    html.find('.abilityCheck').click(this._onVampireRollDialog.bind(this))
+    html.find('.abilityCheck').click(this._onAbilityCheckDialog.bind(this))
+    html.find('.disciplineCheck').click(this._onDisciplineCheckDialog.bind(this))
     //html.find('.resource-value-empty').click(this._onDotCounterEmpty.bind(this))
 
      
@@ -307,12 +379,68 @@ export class VampireSheet extends ActorSheet {
 
   }
 
+  _onDisciplineCheckDialog(event) {
+    event.preventDefault()
+    const data = super.getData()
+    const actorData = data.data
+
+    const li = event.currentTarget.parentNode
+    const item = this.actor.items.get(li.dataset.itemId)
+    const element = event.currentTarget
+
+    const attributeValue = this._getAtributeValue(item.data.data.props.dice1)
+    const abilityValue = this._getAbilityValue(item.data.data.props.dice2)
+
+    let label = "<div class=\"roll-name\">"
+    label += `<img src=\"${item.img}\" class=\"roll-img\">`
+    label += `<h3 class=\"discipline-title\">${item.name}</h3>`
+    label += "</div>"
+    label += `<p>${item.data.data.props.description}</p>`
+    label += "<div class=\"roll-result\">"
+    label += `<h3>${game.i18n.localize('DAV20.Successes')} NUMBER_OF_SUCCESS</h3>`
+    label += "</div>"
+
+    this._abilityCheck(attributeValue + abilityValue, this.actor, label, 6, true)
+  }
+
+  _getAtributeValue(attribute) {
+    const data = super.getData()
+    const actorData = data.data
+    let attributeValue = 0
+
+    for (const [key, value] of Object.entries(actorData.data.attributes)) {
+      if (String(attribute).toLowerCase() == key) {
+        attributeValue = value.value
+        break
+      }
+      console.log(`${key}: ${value}`);
+    }
+
+    return attributeValue
+  }
+
+  _getAbilityValue(ablity) {
+    const data = super.getData()
+    const actorData = data.data
+    let abilityValue = 0
+
+    for (const [key, value] of Object.entries(actorData.data.abilities)) {
+      if (String(ablity).toLowerCase() == key) {
+        abilityValue = value.value
+        break
+      }
+      console.log(`${key}: ${value}`);
+    }
+
+    return abilityValue
+  }
+
   /**
      * Handle clickable Vampire rolls.
      * @param {Event} event   The originating click event
      * @private
      */
-  _onVampireRollDialog(event) {
+  _onAbilityCheckDialog(event) {
     event.preventDefault()
     const element = event.currentTarget
     const dataset = element.dataset
@@ -370,11 +498,13 @@ export class VampireSheet extends ActorSheet {
 
   _abilityCheck(numDice, actor, label = '', difficulty = 6, specialties = false) {
     const dice = numDice;
-    const roll = new Roll(dice + 'd10');
+    const roll = new Roll(dice + 'd10>=' + difficulty);
     const rollResult = roll.evaluate();
-    const parsedRoll = this._parseRollResult(rollResult, difficulty);
+    const parsedRoll = this._parseRollResult(rollResult, difficulty, specialties);
 
     rollResult._total = parsedRoll["Total"];
+
+    label += label.replace("NUMBER_OF_SUCCESS", String(rollResult._total))
 
     rollResult.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: actor }),
@@ -382,7 +512,7 @@ export class VampireSheet extends ActorSheet {
     })
   }
 
-  _parseRollResult(rollResult, difficulty) {
+  _parseRollResult(rollResult, difficulty, specialties = false) {
     let success = 0
     let criticalSuccess = 0
     let fail = 0
@@ -402,7 +532,8 @@ export class VampireSheet extends ActorSheet {
     criticalSuccess -= criticalFail;
 
     if (criticalSuccess < 0) {
-      success -= criticalFail;
+      success -= criticalFail
+      criticalSuccess = 0
     }
 
     return {
@@ -502,23 +633,4 @@ export class VampireSheet extends ActorSheet {
       }
     }
   }
-
-  // There's gotta be a better way to do this but for the life of me I can't figure it out
-  _assignToActorField(fields, value) {
-    const actorData = duplicate(this.actor)
-    // update actor owned items
-    if (fields.length === 2 && fields[0] === 'items') {
-      for (const i of actorData.items) {
-        if (fields[1] === i._id) {
-          i.data.points = value
-          break
-        }
-      }
-    } else {
-      const lastField = fields.pop()
-      fields.reduce((data, field) => data[field], actorData)[lastField] = value
-    }
-    this.actor.update(actorData)
-  }
-
 }

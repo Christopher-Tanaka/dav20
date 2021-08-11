@@ -1,39 +1,35 @@
 <section class="actor-combat-tab">
 
     <section class="actor-weapons">
-        <header class="weapon-header">
-            <h3>{{ localize "Weapon.Label" }}</h3>
-            <h3>{{ localize "Weapon.Concealment" }}</h3>
-            <h3>{{ localize "Weapon.MinStr" }}</h3>
-            <h3>{{ localize "Weapon.Range" }}</h3>
-            <h3>{{ localize "Weapon.Damage" }}</h3>
-            <h3>{{ localize "Weapon.DamageType" }}</h3>
-            <h3>{{ localize "Weapon.Notes" }}</h3>
-            <a class="item-create" title="{{localize 'DAV20.Add'}}" data-type="weapon">
-                <i class="fas fa-plus"></i> {{localize "DAV20.Add"}}
-            </a>
-            <h3></h3>
-        </header>
-    
+        
         <section class="weapons">
 
-            {{#each weapons as |weapon|}} 
-                
-            <h4>{{weapon.name}}</h4>
-            <h4>{{weapon.data.concealment}}</h4>
-            <h4>{{weapon.data.minStr}}</h4>
-            <h4>{{weapon.data.range}}</h4>
-            <h4>{{weapon.data.damage}}</h4>
-            <h4>{{weapon.data.damageType}}</h4>
-            <h4>{{weapon.notes}}</h4>
+            <h3 class="grid-header">{{ localize "Weapon.Label" }}</h3>
+            <h3 class="grid-header">{{ localize "Weapon.Concealment" }}</h3>
+            <h3 class="grid-header">{{ localize "Weapon.MinStr" }}</h3>
+            <h3 class="grid-header">{{ localize "Weapon.Range" }}</h3>
+            <h3 class="grid-header">{{ localize "Weapon.Damage" }}</h3>
+            <h3 class="grid-header">{{ localize "Weapon.DamageType" }}</h3>
+            <a class="item-create grid-header weapon-create" title="{{localize 'DAV20.NewWeapon'}}" data-type="weapon">
+                <i class="fas fa-plus"></i> {{localize "DAV20.NewWeapon"}}
+            </a>
 
-            <div class="item weapon-row" data-item-id="{{weapon._id}}">
+            {{#each data.weapons as |item|}} 
+                
+            <h4>{{item.name}}</h4>
+            <h4>{{item.data.weapon.concealmentDesc}}</h4>
+            <h4>{{item.data.weapon.minStr}}</h4>
+            <h4>{{item.data.weapon.range}}</h4>
+            <h4>{{item.data.weapon.damage}}</h4>
+            <h4>{{item.data.weapon.damageType}}</h4>
+
+            <div class="item weapon-row" data-item-id="{{item._id}}">
                 <a class="item-edit" title="{{localize 'DAV20.Edit'}}">
                     <i class="fas fa-edit"></i>
                 </a>
             </div>
 
-            <div class="item weapon-row" data-item-id="{{weapon._id}}">
+            <div class="item weapon-row" data-item-id="{{item._id}}">
                 <a class="item-delete" title="{{localize 'DAV20.Delete'}}">
                     <i class="fas fa-trash"></i>
                 </a>
@@ -47,6 +43,38 @@
     </section>
 
     <section class="actor-armor">
+
+        
+        <h3 class="grid-header">{{ localize "Armor.Label" }}</h3>
+        <h3 class="grid-header">{{ localize "Armor.Class" }}</h3>
+        <h3 class="grid-header">{{ localize "Armor.Rating" }}</h3>
+        <h3 class="grid-header">{{ localize "Armor.Penalty" }}</h3>
+
+        <a class="item-create grid-header armor-create" title="{{localize 'DAV20.NewArmor'}}" data-type="armor">
+            <i class="fas fa-plus"></i> {{localize "DAV20.NewArmor"}}
+        </a>
+        
+        {{#each data.armors as |item|}} 
+
+        <h3>{{item.name}}</h3>
+        <h3>{{item.data.armor.armorClassDesc}}</h3>
+        <h3>{{item.data.armor.rating}}</h3>
+        <h3>{{item.data.armor.penalty}}</h3>
+
+        <div class="item armor-row" data-item-id="{{item._id}}">
+            <a class="item-edit" title="{{localize 'DAV20.Edit'}}">
+                <i class="fas fa-edit"></i>
+            </a>
+        </div>
+
+        <div class="item armor-row" data-item-id="{{item._id}}">
+            <a class="item-delete" title="{{localize 'DAV20.Delete'}}">
+                <i class="fas fa-trash"></i>
+            </a>
+            
+        </div>
+
+        {{/each}}
         
     </section>
 

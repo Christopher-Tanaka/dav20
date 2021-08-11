@@ -10,13 +10,13 @@
 
             <div class="form-group">
                 <label>{{ localize "Weapon.MinStr" }}</label>
-                <input type="text" name="data.Weapon.MinStr" value="{{data.Weapon.MinStr}}"  placeholder="{{ localize 'Weapon.MinStr' }}"/>
+                <input type="text" name="data.weapon.minStr" value="{{data.weapon.minStr}}"  placeholder="{{ localize 'Weapon.MinStr' }}"/>
             </div>
 
             <div class="form-group">
                 <label>{{ localize "Weapon.DamageType" }}</label>
-                <select name="data.Weapon.DamageType">
-                    {{#select data.Weapon.DamageType}}
+                <select name="data.weapon.damageType">
+                    {{#select data.weapon.damageType}}
                     <option value=""></option>
                     {{#each config.damageTypes as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
@@ -27,8 +27,8 @@
 
             <div class="form-group">
                 <label>{{ localize "Weapon.Concealment" }}</label>
-                <select name="data.Weapon.Concealment">
-                    {{#select data.Weapon.Concealment}}
+                <select name="data.weapon.concealment">
+                    {{#select data.weapon.concealment}}
                     <option value=""></option>
                     {{#each config.concealmentTypes as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
@@ -39,12 +39,38 @@
 
             <div class="form-group">
                 <label>{{ localize "Weapon.Damage" }}</label>
-                <input type="text" name="data.Weapon.Damage" value="{{data.Weapon.Damage}}"  placeholder="{{ localize 'Weapon.Damage' }}"/>
+                <input type="text" name="data.weapon.damage" value="{{data.weapon.damage}}"  placeholder="{{ localize 'Weapon.Damage' }}"/>
             </div>
 
             <div class="form-group">
                 <label>{{ localize "Weapon.Range" }}</label>
-                <input type="text" name="data.Weapon.Range" value="{{data.Weapon.Range}}"  placeholder="{{ localize 'Weapon.Range' }}"/>
+                <input type="text" name="data.weapon.range" value="{{data.weapon.range}}"  placeholder="{{ localize 'Weapon.Range' }}"/>
+            </div>
+
+            <div class="form-group selector">
+                <label>{{ localize "DAV20.Dice1" }}</label>
+                <select name="data.weapon.dice1">
+                    {{#select data.weapon.attribute}}
+                        <option value=""></option>
+                    {{#each config.Attributes as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+        
+            <div class="form-group selector">
+                <label>{{ localize "DAV20.Dice2" }}</label>
+                <select name="data.weapon.dice2">
+                    {{#select data.weapon.attribute}}
+                        <option value=""></option>
+                    {{#each config.abilitiesAvailable as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+    
+                </select>
+                
             </div>
 
         </div>
