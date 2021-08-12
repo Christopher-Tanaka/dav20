@@ -49,7 +49,7 @@
 */
 
 .dav20 h3 {
-  margin: 1px;
+  margin: 0px;
 }
 
 .dav20 input[type="text"],
@@ -86,6 +86,8 @@
   outline: none !important;
 }
 
+.dav20 .attackCheck:hover,
+.dav20 .attackCheck:focus,
 .dav20 .disciplineCheck:hover,
 .dav20 .disciplineCheck:focus,
 .dav20 .abilityCheck:hover,
@@ -629,10 +631,12 @@ Character Disciplines
   align-items: center;
 } 
 
-.discipline-title {
+.dav20 .discipline-title {
   font-size: 15px;
   margin: 0px;
 }
+
+
 
 .dav20 .power-row {
   display: grid;
@@ -804,7 +808,7 @@ Background tab
   justify-content: center;
   align-items: center;
   justify-items: stretch;
-  grid-template-columns:  1fr 1fr .2fr .2fr .2fr .2fr;;
+  grid-template-columns:  2fr 1fr 1fr 1fr 1fr .2fr;
   grid-auto-rows: minmax(30px, auto);
 }
 
@@ -840,7 +844,17 @@ Background tab
   height: 30px;
 }
 
+.roll-title {
+  font-size: 15px;
+  margin: 0px;
+  margin: 0px;
+}
+
 .roll-result {
   background-color: rgba(138,3,3,1);
   color: white;
+  height: 30px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

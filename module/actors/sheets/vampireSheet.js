@@ -37,6 +37,37 @@ export class VampireSheet extends ActorSheet {
     return 'systems/dav20/templates/actors/actor-sheet.html'
   }
 
+  activateListeners(html) {
+    console.log("dav20 | activating listeners...");
+
+    super.activateListeners(html)
+
+    this._setupDotCounters(html)
+    this._setupResourceCounters(html)
+    this._setupHealthCounters(html)
+
+    html.find('.resource-value-step').click(this._onDotCounterChange.bind(this))
+    html.find('.resource-health-step').click(this._onHealthCounterClick.bind(this))
+    html.find('.resource-counter-step').click(this._onSquareCounterClick.bind(this))
+    // Rollable Vampire abilities.
+    html.find('.abilityCheck').click(this._onAbilityCheckDialog.bind(this))
+    html.find('.disciplineCheck').click(this._onDisciplineCheckDialog.bind(this))
+    html.find('.attributeCheck').click(this._onAttributeCheckDialog.bind(this))
+    html.find('.attackCheck').click(this._onAttackCkeckDialog.bind(this))
+     
+    // Owned Item management
+     html.find('.item-create').click(this._onItemCreate.bind(this));
+     html.find('.item-edit').click(this._onItemEdit.bind(this));
+     html.find('.item-delete').click(this._onItemDelete.bind(this));
+
+    if (!this.options.editable) {
+      console.log("dav20 | sheet is not editable");
+      return
+    }
+
+    console.log("dav20 | listener activated");
+  }
+
   /** @override */
   getData() {
     const data = super.getData()
@@ -160,9 +191,7 @@ export class VampireSheet extends ActorSheet {
             break
         }
       }
-
     })
-
   }
 
   _formatMeritsAndFlaws(data, meritsAndFlaws) {
@@ -173,38 +202,6 @@ export class VampireSheet extends ActorSheet {
     })
 
     data.flaws = meritsAndFlaws.filter(function (item) {return item.data.meritsAndFlaws.meritsOrFlaws == "Flaws"})
-  }
-
-
-  activateListeners(html) {
-    console.log("dav20 | activating listeners...");
-
-    super.activateListeners(html)
-
-    this._setupDotCounters(html)
-    this._setupResourceCounters(html)
-    this._setupHealthCounters(html)
-
-    html.find('.resource-value-step').click(this._onDotCounterChange.bind(this))
-    html.find('.resource-health-step').click(this._onHealthCounterClick.bind(this))
-    html.find('.resource-counter-step').click(this._onSquareCounterClick.bind(this))
-    // Rollable Vampire abilities.
-    html.find('.abilityCheck').click(this._onAbilityCheckDialog.bind(this))
-    html.find('.disciplineCheck').click(this._onDisciplineCheckDialog.bind(this))
-    //html.find('.resource-value-empty').click(this._onDotCounterEmpty.bind(this))
-
-     
-    // Owned Item management
-     html.find('.item-create').click(this._onItemCreate.bind(this));
-     html.find('.item-edit').click(this._onItemEdit.bind(this));
-     html.find('.item-delete').click(this._onItemDelete.bind(this));
-
-    if (!this.options.editable) {
-      console.log("dav20 | sheet is not editable");
-      return
-    }
-
-    console.log("dav20 | listener activated");
   }
 
   _onDotCounterEmpty(event) {
@@ -330,7 +327,6 @@ export class VampireSheet extends ActorSheet {
         }
       })
     })
-
   }
 
   _onHealthCounterClick(event) {
@@ -381,8 +377,48 @@ export class VampireSheet extends ActorSheet {
 
   _onDisciplineCheckDialog(event) {
     event.preventDefault()
-    const data = super.getData()
-    const actorData = data.data
+
+    const template = `
+      <form> 
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Modifier')}</label>
+              <input type="text" id="inputMod" value="0">
+          </div>  
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Difficulty')}</label>
+              <input type="text" min="0" id="inputDif" value="6">
+          </div>
+      </form>`
+
+    let buttons = {}
+    buttons = {
+      draw: {
+        icon: '<i class="fas fa-check"></i>',
+        label: game.i18n.localize('DAV20.Roll'),
+        callback: async (html) => {
+      
+          const modifier = parseInt(html.find('#inputMod')[0].value || 0)
+          const difficulty = parseInt(html.find('#inputDif')[0].value || 0)
+
+          this._onDisciplineCheck(event, modifier, difficulty)
+        }
+      },
+      cancel: {
+        icon: '<i class="fas fa-times"></i>',
+        label: game.i18n.localize('DAV20.Cancel')
+      }
+    }
+
+    new Dialog({
+      title: game.i18n.localize('DAV20.Rolling'),
+      content: template,
+      buttons: buttons,
+      default: 'draw'
+    }).render(true)
+  }
+
+
+  _onDisciplineCheck(event, modifier, difficulty) {
 
     const li = event.currentTarget.parentNode
     const item = this.actor.items.get(li.dataset.itemId)
@@ -391,16 +427,19 @@ export class VampireSheet extends ActorSheet {
     const attributeValue = this._getAtributeValue(item.data.data.props.dice1)
     const abilityValue = this._getAbilityValue(item.data.data.props.dice2)
 
-    let label = "<div class=\"roll-name\">"
-    label += `<img src=\"${item.img}\" class=\"roll-img\">`
-    label += `<h3 class=\"discipline-title\">${item.name}</h3>`
-    label += "</div>"
-    label += `<p>${item.data.data.props.description}</p>`
-    label += "<div class=\"roll-result\">"
-    label += `<h3>${game.i18n.localize('DAV20.Successes')} NUMBER_OF_SUCCESS</h3>`
-    label += "</div>"
+    let label = `
+      <div class="roll-name">
+        <img src="${item.img}" class="roll-img">
+        <h3 class="roll-title">${item.name}</h3>
+      </div>
+        <p>${item.data.data.props.description}</p>
+      <div class="roll-result">
+        <h3 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h3>
+      </div>`
 
-    this._abilityCheck(attributeValue + abilityValue, this.actor, label, 6, true)
+    const dicePool = attributeValue + abilityValue + this._getHealthLevelPenalty() + modifier
+
+    this._diceCheck(dicePool, this.actor, label, difficulty, false)
   }
 
   _getAtributeValue(attribute) {
@@ -429,10 +468,93 @@ export class VampireSheet extends ActorSheet {
         abilityValue = value.value
         break
       }
-      console.log(`${key}: ${value}`);
     }
 
     return abilityValue
+  }
+
+  _getHealthLevelPenalty() {
+    const data = super.getData()
+    const actorData = data.data
+    let penalty = 0
+
+    for (const [key, value] of Object.entries(actorData.data.healthLevels)) {
+      if (value.injuryTypes != "")
+        penalty = value.penalty
+    }
+
+    return penalty
+  }
+
+  /**
+   * Handle clickable Vampire rolls.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+    _onAttributeCheckDialog(event) {
+    event.preventDefault()
+    const element = event.currentTarget
+    const dataset = element.dataset
+    const attrValue = parseInt(dataset.roll || 0 )
+
+    const template = `
+      <form>
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Modifier')}</label>
+              <input type="text" id="inputMod" value="0">
+          </div>  
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Difficulty')}</label>
+              <input type="text" min="0" id="inputDif" value="6">
+          </div>
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Specialties')}</label>
+              <input type="checkbox" id="inputSpecialties">
+          </div>
+
+      </form>`
+
+    let buttons = {}
+    buttons = {
+      draw: {
+        icon: '<i class="fas fa-check"></i>',
+        label: game.i18n.localize('DAV20.Roll'),
+        callback: async (html) => {
+          const modifier = parseInt(html.find('#inputMod')[0].value || 0)
+          const difficulty = parseInt(html.find('#inputDif')[0].value || 0)
+          const specialties = html.find('#inputSpecialties')[0].checked
+          const numDice = attrValue + modifier
+          this._onAttributeCheck(event, numDice, difficulty, specialties, dataset.label)
+        }
+      },
+      cancel: {
+        icon: '<i class="fas fa-times"></i>',
+        label: game.i18n.localize('DAV20.Cancel')
+      }
+    }
+
+    new Dialog({
+      title: game.i18n.localize('DAV20.Rolling') + ` ${dataset.label}...`,
+      content: template,
+      buttons: buttons,
+      default: 'draw'
+    }).render(true)
+  }
+
+  
+  _onAttributeCheck(event, numDice, dificulty, specialties, attributeName) {
+
+    let label = `
+      <div class="roll-name">
+        <h3 class="roll-title">${attributeName}</h3>
+      </div>
+      <div class="roll-result">
+        <h3 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h3>
+      </div>`
+
+    numDice = numDice + this._getHealthLevelPenalty()
+
+    this._diceCheck(numDice, this.actor, label, dificulty, specialties)
   }
 
   /**
@@ -464,52 +586,127 @@ export class VampireSheet extends ActorSheet {
               <label>${game.i18n.localize('DAV20.Difficulty')}</label>
               <input type="text" min="0" id="inputDif" value="6">
           </div>
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Specialties')}</label>
+              <input type="checkbox" id="inputSpecialties">
+          </div>
       </form>`
 
     let buttons = {}
     buttons = {
       draw: {
         icon: '<i class="fas fa-check"></i>',
-        label: game.i18n.localize('VTM5E.Roll'),
+        label: game.i18n.localize('DAV20.Roll'),
         callback: async (html) => {
           const ability = html.find('#abilitySelect')[0].value
           const modifier = parseInt(html.find('#inputMod')[0].value || 0)
           const difficulty = parseInt(html.find('#inputDif')[0].value || 0)
+          const specialties = html.find('#inputSpecialties')[0].checked
           const abilityVal = this.actor.data.data.attributes[ability].value
-          const abilityName = game.i18n.localize(this.actor.data.data.attributes[ability].name)
-          const numDice = abilityVal + parseInt(dataset.roll) + modifier
-          this._abilityCheck(numDice, this.actor, `${dataset.label} + ${abilityName}`, difficulty, true)
-          // this._vampireRoll(numDice, this.actor, `${dataset.label} + ${abilityName}`, difficulty)
+          const attributeName = game.i18n.localize(this.actor.data.data.attributes[ability].name)
+          const numDice = parseInt(abilityVal || 0) + parseInt(dataset.roll || 0) + modifier
+          this._abilityCheck(event, numDice, difficulty, specialties, attributeName, dataset.label)
         }
       },
       cancel: {
         icon: '<i class="fas fa-times"></i>',
-        label: game.i18n.localize('VTM5E.Cancel')
+        label: game.i18n.localize('DAV20.Cancel')
       }
     }
 
     new Dialog({
-      title: game.i18n.localize('VTM5E.Rolling') + ` ${dataset.label}...`,
+      title: game.i18n.localize('DAV20.Rolling') + ` ${dataset.label}...`,
       content: template,
       buttons: buttons,
       default: 'draw'
     }).render(true)
   }
 
-  _abilityCheck(numDice, actor, label = '', difficulty = 6, specialties = false) {
-    const dice = numDice;
-    const roll = new Roll(dice + 'd10>=' + difficulty);
-    const rollResult = roll.evaluate();
-    const parsedRoll = this._parseRollResult(rollResult, difficulty, specialties);
+  _abilityCheck(event, numDice, dificulty, specialties, attributeName, abilityName) {
+    let label = 
+    `<div class="roll-name">
+      <h3 class="roll-title">${attributeName} + ${abilityName}</h3>
+    </div>
+    <div class="roll-result">
+      <h3 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h3>
+    </div>
+    <div class="form-group">
+      <label>${game.i18n.localize('DAV20.Specialties')}</label>
+      <input type="checkbox" id="inputSpecialties">
+    </div>`
 
-    rollResult._total = parsedRoll["Total"];
+    numDice = numDice + this._getHealthLevelPenalty()
 
-    label += label.replace("NUMBER_OF_SUCCESS", String(rollResult._total))
+    this._diceCheck(numDice, this.actor, label, dificulty, specialties)
+  } 
 
-    rollResult.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: actor }),
-      flavor: label
-    })
+  _onAttackCkeckDialog(event) {
+    event.preventDefault()
+
+    const template = `
+      <form> 
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Modifier')}</label>
+              <input type="text" id="inputMod" value="0">
+          </div>  
+          <div class="form-group">
+              <label>${game.i18n.localize('DAV20.Difficulty')}</label>
+              <input type="text" min="0" id="inputDif" value="6">
+          </div>
+          <div class="form-group">
+          <label>${game.i18n.localize('DAV20.Specialties')}</label>
+          <input type="checkbox" id="inputSpecialties">
+      </div>
+      </form>`
+
+    let buttons = {}
+    buttons = {
+      draw: {
+        icon: '<i class="fas fa-check"></i>',
+        label: game.i18n.localize('DAV20.Roll'),
+        callback: async (html) => {
+      
+          const modifier = parseInt(html.find('#inputMod')[0].value || 0)
+          const difficulty = parseInt(html.find('#inputDif')[0].value || 0)
+          const specialties = html.find('#inputSpecialties')[0].checked
+
+          this._onAttackCheck(event, modifier, difficulty)
+        }
+      },
+      cancel: {
+        icon: '<i class="fas fa-times"></i>',
+        label: game.i18n.localize('DAV20.Cancel')
+      }
+    }
+
+    new Dialog({
+      title: game.i18n.localize('DAV20.Rolling'),
+      content: template,
+      buttons: buttons,
+      default: 'draw'
+    }).render(true)
+  }
+
+  _onAttackCheck(event, modifier, difficulty, specialties) {
+
+    const item = this.actor.items.get(event.currentTarget.dataset.itemId)
+
+    const attributeValue = this._getAtributeValue(item.data.data.weapon.dice1)
+    const abilityValue = this._getAbilityValue(item.data.data.weapon.dice2)
+
+    let label = `
+      <div class="roll-name">
+        <img src="${item.img}" class="roll-img">
+        <h3 class="roll-title">${item.name}</h3>
+      </div>
+      <br>
+      <div class="roll-result">
+        <h3 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h3>
+      </div>`
+
+    const dicePool = attributeValue + abilityValue + this._getHealthLevelPenalty() + modifier
+
+    this._diceCheck(dicePool, this.actor, label, difficulty, false)
   }
 
   _parseRollResult(rollResult, difficulty, specialties = false) {
@@ -543,6 +740,30 @@ export class VampireSheet extends ActorSheet {
       "Critical Fail": criticalFail,
       "Total": (success + criticalSuccess)
     }
+  }
+
+  _diceCheck(numDice, actor, label = '', difficulty = 6, specialties = false) {
+    const dice = numDice;
+    const roll = new Roll(dice + 'd10>=' + difficulty);
+    const rollResult = roll.evaluate();
+    const parsedRoll = this._parseRollResult(rollResult, difficulty, specialties);
+
+    rollResult._total = parsedRoll["Total"];
+
+    label = label.replace("NUMBER_OF_SUCCESS", String(rollResult._total))
+
+
+    if (parsedRoll["Total"] == 1 || parsedRoll["Total"] == 0)
+      label = label.replace("SUCCESS_PLACEHOLDER", game.i18n.localize('DAV20.Success'))
+    else if (parsedRoll["Total"] > 1) 
+      label = label.replace("SUCCESS_PLACEHOLDER", game.i18n.localize('DAV20.Successes'))
+    else (parsedRoll["Total"] < 0)
+      label = label.replace("SUCCESS_PLACEHOLDER", game.i18n.localize('DAV20.Botches'))
+
+    rollResult.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: actor }),
+      flavor: label
+    })
   }
 
   _rollDice(numDice, actor, label = '', difficulty = 6) {

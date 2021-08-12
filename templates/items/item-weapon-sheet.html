@@ -50,7 +50,7 @@
             <div class="form-group selector">
                 <label>{{ localize "DAV20.Dice1" }}</label>
                 <select name="data.weapon.dice1">
-                    {{#select data.weapon.attribute}}
+                    {{#select data.weapon.dice1}}
                         <option value=""></option>
                     {{#each config.Attributes as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
@@ -62,8 +62,8 @@
             <div class="form-group selector">
                 <label>{{ localize "DAV20.Dice2" }}</label>
                 <select name="data.weapon.dice2">
-                    {{#select data.weapon.attribute}}
-                        <option value=""></option>
+                    {{#select data.weapon.dice2}}
+                    <option value=""></option>
                     {{#each config.abilitiesAvailable as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
                     {{/each}}

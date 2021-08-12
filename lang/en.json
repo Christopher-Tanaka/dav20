@@ -1,5 +1,7 @@
 {
     "DAV20.Rolling": "Rolling",
+    "DAV20.Success": "Success",
+    "DAV20.Botches": "....bad fortune!",
     "DAV20.Successes": "Successes",
     "DAV20.Roll": "Roll",
     "DAV20.Cancel": "Cancel",
@@ -17,9 +19,10 @@
     "DAV20.YourMaker": "About your maker",
     "DAV20.Prelude": "Prelude",
     "DAV20.Goals": "Goals",
+    "DAV20.Specialties": "Specialties",
 
     "DAV20.Attack": "Attack",
-    "DAV20.AttackName": "Attack",
+    "DAV20.AttackName": "Attack Name",
     "DAV20.NewWeapon": "New Weapon",
 
     "DAV20.Name": "Name",

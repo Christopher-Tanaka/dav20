@@ -16,7 +16,7 @@
 
             {{#each data.weapons as |item|}} 
                 
-            <h4>{{item.name}}</h4>
+            <h4 class="attackCheck" data-item-id="{{item._id}}">{{item.name}}</h4>
             <h4>{{item.data.weapon.concealmentDesc}}</h4>
             <h4>{{item.data.weapon.minStr}}</h4>
             <h4>{{item.data.weapon.range}}</h4>

@@ -368,19 +368,6 @@
             "itemDescription": {
                 "description": ""
             }
-        },
-        "weapon": {
-            "templates" : ["itemDescription"],
-            "damage": 0,
-            "damageType": "L",
-            "range": 0,
-            "concealment": 0,
-            "minimumStrength": 0,
-            "notes": ""
-        },
-        "vehicle": {
-            "templates" : ["itemDescription"],
-            "accel": "accel"
         }
     }
 } 
