@@ -422,24 +422,30 @@ export class VampireSheet extends ActorSheet {
 
     const li = event.currentTarget.parentNode
     const item = this.actor.items.get(li.dataset.itemId)
-    const element = event.currentTarget
 
     const attributeValue = this._getAtributeValue(item.data.data.props.dice1)
     const abilityValue = this._getAbilityValue(item.data.data.props.dice2)
 
+    const data = super.getData()
+    const actorData = data.data
+    actorData.data.bloodPool.value -= parseInt(item.data.data.props.bloodCost) 
+    const fieldStrings = "data.bloodPool.value"
+    this.actor.update({ [fieldStrings]: actorData.data.bloodPool.value })
+
     let label = `
       <div class="roll-name">
         <img src="${item.img}" class="roll-img">
-        <h3 class="roll-title">${item.name}</h3>
+        <h4 class="roll-title">${item.name}</h4>
       </div>
         <p>${item.data.data.props.description}</p>
       <div class="roll-result">
-        <h3 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h3>
+        <h4 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h4>
       </div>`
 
     const dicePool = attributeValue + abilityValue + this._getHealthLevelPenalty() + modifier
 
     this._diceCheck(dicePool, this.actor, label, difficulty, false)
+  
   }
 
   _getAtributeValue(attribute) {
@@ -546,10 +552,11 @@ export class VampireSheet extends ActorSheet {
 
     let label = `
       <div class="roll-name">
-        <h3 class="roll-title">${attributeName}</h3>
+        <h4 class="roll-title">${game.i18n.localize('DAV20.Rolling')} ${attributeName}</h4>
       </div>
+      <br>
       <div class="roll-result">
-        <h3 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h3>
+        <h4 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h4>
       </div>`
 
     numDice = numDice + this._getHealthLevelPenalty()
@@ -625,14 +632,11 @@ export class VampireSheet extends ActorSheet {
   _abilityCheck(event, numDice, dificulty, specialties, attributeName, abilityName) {
     let label = 
     `<div class="roll-name">
-      <h3 class="roll-title">${attributeName} + ${abilityName}</h3>
+      <h4 class="roll-title">${attributeName} + ${abilityName}</h4>
     </div>
+    <br>
     <div class="roll-result">
-      <h3 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h3>
-    </div>
-    <div class="form-group">
-      <label>${game.i18n.localize('DAV20.Specialties')}</label>
-      <input type="checkbox" id="inputSpecialties">
+      <h4 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h4>
     </div>`
 
     numDice = numDice + this._getHealthLevelPenalty()
@@ -697,11 +701,11 @@ export class VampireSheet extends ActorSheet {
     let label = `
       <div class="roll-name">
         <img src="${item.img}" class="roll-img">
-        <h3 class="roll-title">${item.name}</h3>
+        <h4 class="roll-title">${item.name}</h4>
       </div>
       <br>
       <div class="roll-result">
-        <h3 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h3>
+        <h4 class="roll-title">NUMBER_OF_SUCCESS SUCCESS_PLACEHOLDER</h4>
       </div>`
 
     const dicePool = attributeValue + abilityValue + this._getHealthLevelPenalty() + modifier
@@ -759,49 +763,6 @@ export class VampireSheet extends ActorSheet {
       label = label.replace("SUCCESS_PLACEHOLDER", game.i18n.localize('DAV20.Successes'))
     else (parsedRoll["Total"] < 0)
       label = label.replace("SUCCESS_PLACEHOLDER", game.i18n.localize('DAV20.Botches'))
-
-    rollResult.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: actor }),
-      flavor: label
-    })
-  }
-
-  _rollDice(numDice, actor, label = '', difficulty = 6) {
-
-    const dice = numDice;
-    const roll = new Roll(dice + 'd10');
-    const rollResult = roll.evaluate();
-
-    let difficultyResult = '<span></span>'
-    let success = 0
-    let hungerSuccess = 0
-    let critSuccess = 0
-    let hungerCritSuccess = 0
-    let fail = 0
-
-    rollResult.terms[0].results.forEach((dice) => {
-      if (dice.success) {
-        if (dice.result === 10) {
-          critSuccess++
-        } else {
-          success++
-        }
-      } else {
-        fail++
-      }
-    })
-
-    let totalCritSuccess = 0
-    totalCritSuccess = Math.floor((critSuccess + hungerCritSuccess) / 2)
-    const totalSuccess = (totalCritSuccess * 2) + success + hungerSuccess + critSuccess + hungerCritSuccess
-    let successRoll = false
-    if (difficulty !== 0) {
-      successRoll = totalSuccess >= difficulty
-      difficultyResult = `( <span class="danger">${game.i18n.localize('VTM5E.Fail')}</span> )`
-      if (successRoll) {
-        difficultyResult = `( <span class="success">${game.i18n.localize('VTM5E.Success')}</span> )`
-      }
-    }
 
     rollResult.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: actor }),

@@ -261,11 +261,11 @@
 }
 
 .dav20 .resource-counter .resource-counter-step.active{
-  background-color: #790813;
+  background-color: rgba(138,3,3,1);
 }
 
 .dav20 .resource-counter .resource-counter-step[data-state="-"] {
-  background-color: #790813;
+  background-color: rgba(138,3,3,1);
 }
 
 .dav20 .resource-counter .resource-counter-step[data-state="/"] {
@@ -315,7 +315,7 @@
 }
 
 .dav20 .resource-health-step[data-state="-"] {
-  background-color: #790813;
+  background-color: rgba(138,3,3,1);
 }
 
 .dav20 .resource-health-step[data-state="/"] {
@@ -833,10 +833,7 @@ Background tab
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  border-top: 2px solid  rgba(138,3,3,.1);
-  border-bottom: 2px solid rgba(138,3,3,.1);
-  opacity: 0.7;
-  
+  color: black;
 }
 
 .roll-img {
@@ -846,7 +843,6 @@ Background tab
 
 .roll-title {
   font-size: 15px;
-  margin: 0px;
   margin: 0px;
 }
 
