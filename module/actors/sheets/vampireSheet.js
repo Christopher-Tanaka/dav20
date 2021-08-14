@@ -195,6 +195,22 @@ export class VampireSheet extends ActorSheet {
   }
 
   _formatMeritsAndFlaws(data, meritsAndFlaws) {
+    meritsAndFlaws.forEach ( item => {
+      switch (item.data.meritsAndFlaws.type) {
+        case "Physical":
+          item.data.meritsAndFlaws.typeDesc = game.i18n.localize('DAV20.Physical')
+          break
+        case "Social":
+          item.data.meritsAndFlaws.typeDesc = game.i18n.localize('DAV20.Social')
+          break
+        case "Mental":
+          item.data.meritsAndFlaws.typeDesc = game.i18n.localize('DAV20.Mental')
+          break
+        case "Supernatural":
+          item.data.meritsAndFlaws.typeDesc = game.i18n.localize('DAV20.Supernatural')
+          break
+      }
+    })
 
     data.merits = meritsAndFlaws.filter(function (item) {
       const merits = item.data.meritsAndFlaws.meritsOrFlaws == "Merits"
